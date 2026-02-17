@@ -1,0 +1,12 @@
+{
+    "uuid": "rrss_0yt2sa",
+    "name": "Read RSS",
+    "description": "Read RSS feed and show it in a list",
+    "version": "0.0.0",
+    "route": "/rrss",
+    "config": {
+        "cache_seconds": 300,
+        "rsss_default": "",
+        "rrss_urls": {}
+    }
+}

@@ -1,0 +1,11 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-pwa-py (See LICENCE) *:}
+
+{:snip; current:template:body-main-content >>
+    {:bool; CONTEXT->HEADERS->Requested-With-Ajax >>
+        {:snip; util:reload-page-self :}
+    :}{:else;
+        {:snip; util:reload-page-home :}
+    :}
+:}
+
+{:^;:}

@@ -1,0 +1,66 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/nts-starter-py (See LICENCE) *:}
+
+{:snip; current:template:body-main-content >>
+    <div class="expanse-container">
+        {:* Estrellas de fondo *:}
+        <div class="expanse-stars" id="expanse-stars"></div>
+
+        {:* Controles *:}
+        <div class="expanse-controls mt-2">
+            <button class="expanse-info-btn" id="expanse-projectInfoBtn">?</button>
+
+            <div class="expanse-speed-controls">
+                <button class="expanse-speed-btn active" id="expanse-speed1Btn">x1</button>
+                <button class="expanse-speed-btn" id="expanse-speed2Btn">x2</button>
+                <button class="expanse-speed-btn" id="expanse-speed3Btn">x3</button>
+            </div>
+
+            {:* Botones de Zoom añadidos *:}
+            <button class="expanse-btn" id="expanse-zoomOutBtn" title="Reducir Zoom">-</button>
+            <button class="expanse-btn" id="expanse-zoomInBtn" title="Aumentar Zoom">+</button>
+
+            <button class="expanse-btn" id="expanse-pauseBtn">⏸</button>
+        </div>
+
+        {:* Panel de información del proyecto *:}
+        <div class="expanse-info-panel" id="expanse-projectInfoPanel">
+            <div class="expanse-info-panel-header">
+                <h3>¿Qué es Expanse?</h3>
+                <button class="expanse-close-panel-btn" id="expanse-closeProjectBtn">✕</button>
+            </div>
+            <div class="expanse-description">
+                Expanse es un sistema planetario digital que representa el ecosistema de <a class="expanse-website-link" rel="nofollow noopener" target="_blank" href="https://meneame.net/">Menéame</a> y sus comunidades derivadas.
+                El planeta central simboliza la plataforma original, mientras que las lunas representan proyectos como <a class="expanse-website-link" rel="noopener" target="_blank" href="https://app.renegados.es/es">Renegados</a>,
+                <a class="expanse-website-link" href="/rrss/rss/Mediatize">Mediatize</a>,
+                <a class="expanse-website-link" href="/rrss/rss/Killbait">Killbait</a> y
+                <a class="expanse-website-link" href="/rrss/rss/Tardigram">Tardigram</a>,
+                además de canales de Telegram de
+                <a class="expanse-website-link" href="/telegram-expanse">renegadosmnm</a>,
+                <a class="expanse-website-link" href="/telegram-expanse">nuevomeneame</a>,
+                <a class="expanse-website-link" href="/telegram-expanse">mediatize_info</a>,
+                <a class="expanse-website-link" href="/telegram-expanse">OrangeTerapy 2.0</a> y
+                <a class="expanse-website-link" href="/telegram-expanse">yupsrespaldo</a>.
+                Explora este universo interactivo para descubrir más sobre cada componente del sistema.
+                <br><br>
+                Haz clic en cualquier planeta o luna para ver información.
+            </div>
+        </div>
+
+        {:* Panel de información de cuerpos celestes *:}
+        <div class="expanse-info-panel" id="expanse-infoPanel">
+            <div class="expanse-info-panel-header">
+                <h3 id="expanse-infoName"></h3>
+                <button class="expanse-close-panel-btn" id="expanse-closeBtn">✕</button>
+            </div>
+            <div class="expanse-type" id="expanse-infoType"></div>
+            <div class="expanse-description" id="expanse-infoDescription"></div>
+            <a id="expanse-infoLink" class="expanse-website-link small">Noticias de sitio web</a> -
+            <a id="expanse-infoLink" class="expanse-website-link small" href="/telegram-expanse">Telegram</a>
+        </div>
+
+        {:* Canvas para el sistema solar *:}
+        <canvas id="expanse-canvas"></canvas>
+    </div>
+:}
+
+{:^;:}

@@ -1,0 +1,24 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-starter-py (See LICENCE) *:}
+
+{:!locale; #/locale-{:lang;:}.json :}
+
+{:!include; {:flg; require :} >> #/snippets.ntpl :}
+
+{:*
+    Disable carousel
+    ----------------
+*:}
+{:snip; current:template:body-carousel >> :}
+
+{:moveto; /body >>
+    <script nonce="{:;CSP_NONCE:}">
+        document.addEventListener('DOMContentLoaded', function() {
+            ['#loginModal', '#registerModal', '#logoutModal'].forEach(function(modalId) {
+                const links = document.querySelectorAll(`a[href="${modalId}"]`);
+                links.forEach(link => {
+                    link.classList.add('disabled');
+                });
+            });
+        });
+    </script>
+:}

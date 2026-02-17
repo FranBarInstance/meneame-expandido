@@ -1,0 +1,94 @@
+{:* Copyright (C) 2025 https://github.com/FranBar1966/neutral-pwa-py (See LICENCE) *:}
+
+{:data; #/data.json :}
+
+{:snip; current:template:body-main-content >>
+    <p class="lead text-muted px-md-2">
+        Informar, debatir y dar a conocer el <a href="/info/expandido">Menéame Expandido</a>, que abarca sitios web, agregadores,
+        canales de Telegram y otros medios que giran en torno a la comunidad de <a target="_blank" rel="noopener nofollow" href="https://meneame.net">Menéame</a>.
+    </p>
+    <div class="{:;local::theme-container-class:}">
+        <section class="mb-3">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Expanse</h3>
+                    <p>
+                        <strong>Expanse</strong> es un proyecto sin ánimo de lucro creado por un grupo de usuarios inquietos
+                        y entusiastas de <strong>Menéame</strong>, que nace desde
+                        <a target="_blank" href="https://app.renegados.es/es">Renegados</a> y que quieren ofrecer
+                        su visión del <a href="/info/expandido">Menéame Expandido</a>.
+                    </p>
+                    <figure class="border-start border-4 border-primary ps-3 ps-md-4 mt-4">
+                        <blockquote class="blockquote mb-2">
+                            <p class="fst-italic">
+                                “Más allá de Menéame está el Expanse.”
+                            </p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer mt-1">
+                            El Gran Expansor, <cite>CEO Expanse</cite>
+                        </figcaption>
+                    </figure>
+                    <div class="row align-items-center mb-md-3">
+                        <div class="col-lg-5 mb-lg-0">
+                            <img
+                                src="{:;current->site->static:}expanse/img/expansor2.jpg"
+                                alt="El Gran Expansor"
+                                class="img-fluid rounded-3"
+                            >
+                        </div>
+                        <div class="col-lg-7 mt-3">
+                            <h3 class="mb-3">Misión espacial</h3>
+                            <p>
+                                Es cuestión de espacio y queremos expandir aún más el <a href="/info/expandido">Menéame Expandido</a>.
+                            </p>
+                            <p>
+                                Además de informar, aspiramos a ser un foro abierto y colaborativo, donde los usuarios puedan
+                                contribuir a desarrollar y ampliar el concepto de <a href="/info/expandido">Menéame Expandido</a>.
+                            </p>
+                            <p>
+                                El software que utilizamos es de código abierto y está disponible en
+                                <a target="_blank" href="https://github.com/FranBarInstance/neutral-starter-py">GitHub</a>. Por ello,
+                                cualquiera puede crear su propia versión de <strong>Expanse</strong>, y animamos a los usuarios a hacerlo.
+                            </p>
+                            <p>
+                                Estamos comprometidos con el software de <strong>código abierto</strong>, la <strong>libertad de expresión</strong>, la <strong>libertad de información</strong>
+                                y la <strong>privacidad</strong> de los usuarios.
+                            </p>
+                            <p>
+                                En Renegados puedes encontrar más información sobre <strong>Expanse</strong> aquí:
+                                <a target="_blank" href="https://app.renegados.es/es/s/expanse">Renegados Expanse</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        Ni <strong>Menéame</strong> ni los sitios web, agregadores, canales de Telegram y otros medios que mencionamos
+                        están asociados con <strong>Expanse</strong>; son iniciativas independientes y no tienen relación con nuestro
+                        proyecto. Nuestra labor se limita a recopilar información y mostrarla en esta plataforma.
+                    </p>
+                    <h3 class="mb-3">Código abierto</h3>
+                    <p>
+                        Para el desarrollo de <strong>Expanse</strong> usamos principalmente el siguiente software:
+                    </p>
+                    <ul>
+                        <li>Python con Flask</li>
+                        <li><a target="_blank" href="https://github.com/FranBarInstance/neutralts">Template Engine - Neutral TS</a></li>
+                        <li><a target="_blank" href="https://github.com/FranBarInstance/neutral-starter-py">Neutral TS Starter Py</a></li>
+                        <li><a target="_blank" href="https://getbootstrap.com/">Bootstrap</a></li>
+                        <li><a target="_blank" href="https://bootswatch.com/">Bootswatch</a></li>
+                        <li><a target="_blank" href="https://github.com/FranBarInstance/Telegram-Ban-Bypass">Telegram Ban Bypass</a></li>
+                        <li><a target="_blank" href="https://pictogrammers.com/library/mdi/">Material Design Icons</a></li>
+                    </ul>
+                    <div class="border-top pt-3 mb-3">
+                        <p class="mb-0 text-muted">
+                            Contactanos si conoces algún sitio web, agregador, canal de Telegram o otro medio que
+                            pueda ser de interés y que creas que debe formar parte de <strong>Expanse</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+:}
+
+{:^;:}

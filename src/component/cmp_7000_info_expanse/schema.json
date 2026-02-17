@@ -1,0 +1,80 @@
+{
+    "inherit": {
+        "locale": {
+            "trans": {
+                "es": {
+                    "Information": "Información",
+                    "About": "Acerca de",
+                    "Help": "Ayuda",
+                    "Contact": "Contacto",
+                    "Legal": "Aviso legal"
+                },
+                "fr": {
+                    "Information": "Informations",
+                    "About": "À propos",
+                    "Help": "Aide",
+                    "Contact": "Contact",
+                    "Legal": "Mentions légales"
+                },
+                "de": {
+                    "Information": "Informationen",
+                    "About": "Über",
+                    "Help": "Hilfe",
+                    "Contact": "Kontakt",
+                    "Legal": "Impressum"
+                }
+            }
+        },
+        "data": {
+            "drawer": {
+                "menu": {
+                    "session:": {
+                        "info": {
+                            "name": "Information",
+                            "tabs": "info",
+                            "icon": "x-icon-help"
+                        }
+                    },
+                    "session:true": {
+                        "info": {
+                            "name": "Information",
+                            "tabs": "info",
+                            "icon": "x-icon-help"
+                        }
+                    }
+                }
+            },
+            "menu": {
+                "session:": {
+                    "info": {
+                        "about": {
+                            "text": "About",
+                            "link": "[:;data->info_0yt2sa->manifest->route:]/about",
+                            "icon": "x-icon-about"
+                        },
+                        "expandido": {
+                            "text": "Expandido",
+                            "link": "[:;data->info_0yt2sa->manifest->route:]/expandido",
+                            "icon": "x-icon-web"
+                        }
+                    }
+                },
+                "session:true": {
+                    "info": {
+                        "about": {
+                            "text": "About",
+                            "link": "[:;data->info_0yt2sa->manifest->route:]/about",
+                            "icon": "x-icon-about"
+                        },
+                        "expandido": {
+                            "text": "Expandido",
+                            "link": "[:;data->info_0yt2sa->manifest->route:]/expandido",
+                            "icon": "x-icon-web"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "data": {}
+}

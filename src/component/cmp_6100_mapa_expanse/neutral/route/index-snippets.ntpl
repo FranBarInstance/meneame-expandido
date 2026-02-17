@@ -1,0 +1,23 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/nts-starter-py (See LICENCE) *:}
+
+{:snip; current:template:body-carousel >> :}
+{:snip; current:template:body-lateral-bar >> :}
+{:snip; current:template:page-h1 >> :}
+{:snip; current:template:body-footer >> :}
+
+{:snip; comp-debug-button-context >> :}
+{:snip; comp-debug-button-data >> :}
+{:snip; comp-debug-button-local-data >> :}
+
+{:snip; current:template:head:backtotop_0yt2sa >>
+    <link nonce="{:;CSP_NONCE:}" rel="stylesheet" href="{:;mapa_expanse_0yt2sa->manifest->route:}/mapa.min.css" />
+:}
+
+{:snip; current:template:body-end:backtotop_0yt2sa >>
+    <script nonce="{:;CSP_NONCE:}">
+        document.getElementById('main-navbar').classList.add('bg-transparent');
+    </script>
+    <script nonce="{:;CSP_NONCE:}" src="{:;mapa_expanse_0yt2sa->manifest->route:}/mapa.min.js"></script>
+:}
+
+{:data; #/data.json :}

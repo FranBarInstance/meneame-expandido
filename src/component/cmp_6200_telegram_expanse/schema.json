@@ -1,0 +1,35 @@
+{
+    "inherit": {
+        "locale": {
+            "trans": {
+                "en": {},
+                "es": {},
+                "fr": {},
+                "de": {}
+            }
+        },
+        "data": {
+            "menu": {
+                "session:": {
+                    "main": {
+                        "espia": {
+                            "text": "Telegram Expanse",
+                            "link": "[:;data->telegram_expanse_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-chat"
+                        }
+                    }
+                },
+                "session:true": {
+                    "main": {
+                        "espia": {
+                            "text": "Telegram Expanse",
+                            "link": "[:;data->telegram_expanse_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-chat"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "data": {}
+}

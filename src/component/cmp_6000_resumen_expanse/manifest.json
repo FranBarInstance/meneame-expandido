@@ -1,0 +1,22 @@
+{
+    "uuid": "resumen_0yt2sa",
+    "name": "Resumen IA de URLs",
+    "description": "Genera resúmenes de feeds RSS usando modelos de IA",
+    "version": "1.0.0",
+    "route": "/resumen",
+    "config": {
+        "cache_seconds": 300,
+        "prompt": "A continuación, un RSS o página web. - Haz un resumen global del contenido destacado. - Resalta las publicaciones más importantes. - Si se especifican autores, muéstralos. - Genera enlaces a publicaciones o noticias. - En español.",
+        "default_profile": "ollama_local",
+        "resumen_urls": {
+            "Renegados": "https://repostea.renegados.es/rss/published",
+            "Meneame": "https://www.meneame.net/rss",
+            "Meneame comentarios": "https://meneame.net/comments_rss",
+            "Nótame": "https://meneame.net/sneakme_rss",
+            "Killbait": "https://killbaitnews.github.io/rssfeeds/es.rss",
+            "Mediatize": "https://www.mediatize.info/rss",
+            "Tardigram": "https://tardigram.com/rss",
+            "BBC": "https://feeds.bbci.co.uk/news/rss.xml"
+        }
+    }
+}

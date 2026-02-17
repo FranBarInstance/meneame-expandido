@@ -1,0 +1,11 @@
+{
+    "data": {
+        "current": {
+            "route": {
+                "title": "Resumen IA de URLs",
+                "description": "Genera resúmenes de feeds RSS usando modelos de IA",
+                "h1": "Resumen IA de URLs"
+            }
+        }
+    }
+}

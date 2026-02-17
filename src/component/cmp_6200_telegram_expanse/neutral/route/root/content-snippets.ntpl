@@ -1,0 +1,925 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/nts-starter-py (See LICENCE) *:}
+
+{:snip; current:template:body-main-content >>
+    <style nonce="{:;CSP_NONCE:}">
+        #widget-container iframe {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+    <div class="{:;local::theme-container-class:}">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-2">
+                {:* Header Section *:}
+                <div class="card shadow-sm mb-4 d-none" id="header-section">
+                    <div class="card-body text-center">
+                        <h1 id="mainTitle" class="card-title text-primary fw-bold mb-3"></h1>
+                        <div class="d-flex justify-content-center align-items-center gap-3">
+                            <span class="language-selector">
+                                <a href="#" _onclick="changeLanguage('es')" id="lang-es" class="text-decoration-none text-secondary">Español</a>
+                                <span class="text-muted">|</span>
+                                <a href="#" _onclick="changeLanguage('en')" id="lang-en" class="text-decoration-none text-secondary">English</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                {:* Input Section *:}
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <label for="channel-input" id="enterChannelLabel" class="form-label fw-bold"></label>
+                        <input type="text" id="channel-input" class="form-control mb-3" placeholder="e.g., telegram or https://t.me/telegram/">
+
+                        <div class="row g-2 mb-3 align-items-center">
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="method" id="method-api" value="api" disabled>
+                                    <label class="form-check-label" for="method-api" id="byApiLabel"></label>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="method" id="method-binary" value="binary" checked>
+                                    <label class="form-check-label" for="method-binary" id="byBinarySearchLabel"></label>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="method" id="method-manual" value="manual">
+                                    <label class="form-check-label" for="method-manual" id="byManualLabel"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="start-id-container d-none mb-3" id="start-id-container">
+                            <label for="start-id-input" class="form-label">Start ID</label>
+                            <div class="input-group">
+                                <input type="number" id="start-id-input" class="form-control" placeholder="Start ID">
+                                <button type="button" id="save-cookie-btn" class="btn btn-success"></button>
+                            </div>
+                        </div>
+
+                        <button type="button" id="load-channel-btn" class="btn btn-primary w-100 fw-bold"></button>
+                    </div>
+                </div>
+
+                {:* Loading / Error Alerts *:}
+                <div id="loading" class="alert alert-secondary d-none text-center" role="status"></div>
+                <div id="error" class="alert alert-danger d-none" role="alert"></div>
+
+                {:* Saved Channels *:}
+                <div id="saved-channels-container" class="card shadow-sm mb-4 d-none">
+                    <ul class="list-group list-group-flush" id="saved-channels-list">
+                        <!-- Items injected by JS -->
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6 order-md-1">
+
+                {:* Current Channel Status *:}
+                <div id="current-channel" class="alert alert-info d-none" role="alert">
+                    <!-- Text injected by JS -->
+                </div>
+
+                {:* Widget Area *:}
+                <div id="widget-container" class="mb-2"></div>
+
+                <button class="btn btn-primary w-100 mb-5 d-none" id="loadMoreBtn"></button>
+
+                <!-- Tips / Guide -->
+                <div class="card shadow-sm border-start mb-4" style="margin-top: -0.5rem;">
+                    <div class="card-body">
+                        <h3 id="quickGuideTitle" class="h5 card-title fw-bold mb-3"></h3>
+                        <p id="quickGuideDescription" class="card-text text-muted"></p>
+
+                        <div class="alert alert-light d-flex align-items-center mb-3" role="alert" id="searchInfo">
+                            <div id="searchInfoText" class="mb-0"></div>
+                        </div>
+
+                        <h6 class="fw-bold mb-2 d-none">Features:</h6>
+                        <ul id="featuresList" class="list-group list-group-flush list-group-numbered text-muted ps-3 d-none">
+                            <!-- Features injected by JS -->
+                        </ul>
+
+                        <div class="text-center mt-3 mb-4">
+                            <small class="text-muted">GitHub: </small>
+                            <a href="https://github.com/FranBarInstance/Telegram-Ban-Bypass" target="_blank" class="text-decoration-none">Telegram Ban Bypass</a>
+                        </div>
+                    </div>
+                </div>
+
+                {:* Hidden Caching Element *:}
+                <div class="d-none">
+                    <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="telegram/0" data-width="100%"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script nonce="{:;CSP_NONCE:}">
+        const translations = {
+            en: {
+                title: "Telegram Ban Bypass",
+                enterChannel: "Enter Telegram Channel:",
+                byApi: "API",
+                byBinarySearch: "Binary",
+                byManual: "Manual",
+                loadChannel: "Load Channel",
+                loading: "Loading...",
+                loadingLatestPost: "Loading latest post...",
+                startingBinarySearch: "Starting binary search...",
+                searchingInitialRange: "Searching initial range...",
+                testingMessage: "Testing message",
+                rangeFound: "Range found:",
+                verifyingLastMessage: "Verifying last message:",
+                noValidMessages: "No valid messages found",
+                noMessages: "No messages found - channel may not exist or have no public messages",
+                currentlyViewing: "Currently viewing:",
+                latestPostId: "Latest post ID:",
+                searchCompleted: "✅ Search completed. Last message:",
+                loadMore: "Load More Posts",
+                invalidChannel: "Please enter a valid channel name",
+                quickGuideTitle: "Quick Guide:",
+                quickGuideDescription: "Allows you to access blocked Telegram channels or groups. You can read the messages of a channel without appearing in the history, no one knows if you have read it.",
+                searchInfoText: "Binary search fails in channels where many messages have been deleted. In that case you can use manual search, entering manually the ID of the last message of the group or channel. You must find that ID yourself.",
+                features: [
+                    "Use channel names (e.g., \"telegram\") or URL (e.g., \"https://t.me/telegram\")",
+                    "Alternatively you can download a HTML that works in any browser:"
+                ],
+                saveAsCookie: "Save (cookie)"
+            },
+            es: {
+                title: "Saltar Ban en Telegram",
+                enterChannel: "Introduce el Canal de Telegram:",
+                byApi: "API",
+                byBinarySearch: "Binaria",
+                byManual: "Manual",
+                loadChannel: "Cargar Canal",
+                loading: "Cargando...",
+                loadingLatestPost: "Cargando último mensaje...",
+                startingBinarySearch: "Iniciando búsqueda binaria...",
+                searchingInitialRange: "Buscando rango inicial...",
+                testingMessage: "Probando mensaje",
+                rangeFound: "Rango encontrado:",
+                verifyingLastMessage: "Verificando último mensaje:",
+                noValidMessages: "No se encontraron mensajes válidos",
+                noMessages: "No se encontraron mensajes - el canal puede no existir o no tener mensajes públicos",
+                currentlyViewing: "Viendo actualmente:",
+                latestPostId: "Último ID:",
+                searchCompleted: "✅ Búsqueda completada. Último mensaje:",
+                loadMore: "Cargar Más Mensajes",
+                invalidChannel: "Por favor, introduce un nombre de canal válido",
+                quickGuideTitle: "Guía Rápida:",
+                quickGuideDescription: "Permite acceder a canales o grupos bloqueados de Telegram. Puedes leer los mensajes de un canal sin aparecer en el historial, nadie sabe si lo has leído.",
+                searchInfoText: "La búsqueda binaria falla en canales donde se han borrado muchos mensajes. En ese caso puedes usar la búsqueda manual, poniendo manualmente el ID del último mensaje del grupo o canal. Tú debes encargarte de encontrar ese ID.",
+                features: [
+                    "Usa nombres de canal (ej: \"telegram\") o URL (ej: \"https://t.me/telegram\")",
+                    "Alternativamente puedes descargar un HTML que funciona en cualquier navegador:"
+                ],
+                saveAsCookie: "Guardar (cookie)"
+            }
+        };
+        const getPreferredLanguage = () => {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) return savedLang;
+            const userLang = navigator.language || navigator.userLanguage;
+            return userLang.startsWith('{:lang;:}') ? 'es' : 'en';
+        };
+        let currentLang = getPreferredLanguage();
+        let t = translations[currentLang];
+        function changeLanguage(lang) {
+            currentLang = lang;
+            t = translations[lang];
+            localStorage.setItem('preferredLanguage', lang);
+            document.documentElement.lang = lang;
+            i18n.updateUITexts();
+            updateLanguageSelector();
+        }
+        function updateLanguageSelector() {
+            const esLink = document.getElementById('lang-es');
+            const enLink = document.getElementById('lang-en');
+
+            if (currentLang === 'es') {
+                esLink.classList.add('fw-bold', 'text-primary');
+                esLink.classList.remove('text-secondary');
+                enLink.classList.remove('fw-bold', 'text-primary');
+                enLink.classList.add('text-secondary');
+            } else {
+                enLink.classList.add('fw-bold', 'text-primary');
+                enLink.classList.remove('text-secondary');
+                esLink.classList.remove('fw-bold', 'text-primary');
+                esLink.classList.add('text-secondary');
+            }
+        }
+        const CONFIG = {
+            NUM_POSTS: 25,
+            CACHE_DURATION: 600000,
+            TIMEOUT_DURATION: 5000,
+            MIN_IFRAME_HEIGHT: 60,
+            MAX_POSTS_BEFORE_CLEAR: 200,
+            INTERVAL_CHECKS: 25,
+            LOAD_MORE_POST: 10,
+            DELETED_POST_CHECK_MAX_TIMES: 1500,
+            DELETED_POST_CHECK_INTERVAL: 10,
+            WIDGET_SCRIPT_URL: 'https://telegram.org/js/telegram-widget.js?22',
+            API_URL: '',
+            LOAD_MORE_DELAY: 900
+        };
+        const state = {
+            countInterval: 0,
+            intervalId: null,
+            countPosts: 0,
+            lastPostId: 0,
+            currentChannel: '',
+            isLoading: false
+        };
+        const elements = {
+            loading: document.getElementById('loading'),
+            error: document.getElementById('error'),
+            currentChannel: document.getElementById('current-channel'),
+            widgetContainer: document.getElementById('widget-container'),
+            loadMoreButton: document.getElementById('loadMoreBtn'),
+            channelInput: document.getElementById('channel-input'),
+            loadChannelBtn: document.getElementById('load-channel-btn'),
+            startIdInput: document.getElementById('start-id-input'),
+            startIdContainer: document.getElementById('start-id-container'),
+            saveCookieBtn: document.getElementById('save-cookie-btn'),
+            searchInfo: document.getElementById('searchInfo'),
+            searchInfoText: document.getElementById('searchInfoText')
+        };
+        const postCache = new Map();
+        const manualCache = new Map();
+        const utils = {
+            extractChannelName(input) {
+                const cleanInput = input.trim();
+                if (cleanInput.includes('t.me/')) {
+                    const parts = cleanInput.split('/');
+                    return parts[parts.length - 1] || parts[parts.length - 2];
+                }
+                return cleanInput.startsWith('@') ? cleanInput.substring(1) : cleanInput;
+            },
+            setLoadingState(isLoading, message = 'Loading...') {
+                state.isLoading = isLoading;
+                elements.loading.textContent = message;
+                if(isLoading) {
+                    elements.loading.classList.remove('d-none');
+                    elements.loading.classList.add('d-block');
+                } else {
+                    elements.loading.classList.add('d-none');
+                    elements.loading.classList.remove('d-block');
+                }
+            },
+            showError(message) {
+                elements.error.textContent = message;
+                elements.error.classList.remove('d-none');
+                elements.error.classList.add('d-block');
+                elements.loading.classList.add('d-none');
+                elements.loading.classList.remove('d-block');
+            },
+            clearContainer() {
+                elements.widgetContainer.innerHTML = '';
+                elements.loadMoreButton.classList.add('d-none');
+                elements.loadMoreButton.classList.remove('d-block');
+                elements.currentChannel.classList.add('d-none');
+                elements.currentChannel.classList.remove('d-block');
+                elements.currentChannel.className = "alert alert-info d-none"; // Reset class
+            },
+            createTestElement() {
+                const testContainer = document.createElement('div');
+                testContainer.style.position = 'absolute';
+                testContainer.style.left = '-9999px';
+                testContainer.style.visibility = 'hidden';
+                document.body.appendChild(testContainer);
+                return testContainer;
+            },
+            saveChannel(channelName) {
+                const savedChannels = JSON.parse(localStorage.getItem('telegramSavedChannels') || '[]');
+                if (!savedChannels.includes(channelName)) {
+                    savedChannels.push(channelName);
+                    localStorage.setItem('telegramSavedChannels', JSON.stringify(savedChannels));
+                    return true;
+                }
+                return false;
+            },
+            loadSavedChannels() {
+                return JSON.parse(localStorage.getItem('telegramSavedChannels') || '[]');
+            },
+            removeChannel(channelName) {
+                let savedChannels = utils.loadSavedChannels();
+                savedChannels = savedChannels.filter(ch => ch !== channelName);
+                localStorage.setItem('telegramSavedChannels', JSON.stringify(savedChannels));
+            },
+            displaySavedChannels() {
+                const savedChannels = utils.loadSavedChannels();
+                const listContainer = document.getElementById('saved-channels-list');
+                const savedChannelsContainer = document.getElementById('saved-channels-container');
+                if (savedChannels.length > 0) {
+                    listContainer.innerHTML = '';
+                    savedChannels.forEach(channel => {
+                        const li = document.createElement('li');
+                        li.className = "list-group-item d-flex justify-content-between align-items-center";
+                        li.innerHTML = `
+                            <span class="text-primary" style="cursor:pointer" data-channel="${channel}">@${channel}</span>
+                            <button class="btn btn-sm btn-outline-danger" data-channel="${channel}">×</button>
+                        `;
+                        listContainer.appendChild(li);
+                    });
+                    savedChannelsContainer.classList.remove('d-none');
+                    savedChannelsContainer.classList.add('d-block');
+
+                    document.querySelectorAll('#saved-channels-list button').forEach(button => {
+                        button.addEventListener('click', (e) => {
+                            const channelToRemove = e.target.dataset.channel;
+                            utils.removeChannel(channelToRemove);
+                            utils.displaySavedChannels();
+                        });
+                    });
+                    document.querySelectorAll('#saved-channels-list span').forEach(span => {
+                        span.addEventListener('click', (e) => {
+                            elements.channelInput.value = e.target.dataset.channel;
+                            utils.loadChannelStartId(e.target.dataset.channel);
+                            elements.loadChannelBtn.click();
+                        });
+                    });
+                } else {
+                    savedChannelsContainer.classList.add('d-none');
+                    savedChannelsContainer.classList.remove('d-block');
+                }
+            },
+            setCookie(name, value, days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                const expires = "expires=" + date.toUTCString();
+                document.cookie = name + "=" + value + ";" + expires + ";path=/";
+            },
+            getCookie(name) {
+                const nameEQ = name + "=";
+                const ca = document.cookie.split(';');
+                for(let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            },
+            deleteCookie(name) {
+                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            },
+            saveChannelStartId(channelName, startId) {
+                const channelStartIds = JSON.parse(utils.getCookie('telegram_channel_start_ids') || '{}');
+                channelStartIds[channelName] = startId;
+                const date = new Date();
+                date.setMonth(date.getMonth() + 1);
+                const expires = "expires=" + date.toUTCString();
+                document.cookie = "telegram_channel_start_ids=" + JSON.stringify(channelStartIds) + ";" + expires + ";path=/";
+            },
+            getChannelStartId(channelName) {
+                const channelStartIds = JSON.parse(utils.getCookie('telegram_channel_start_ids') || '{}');
+                return channelStartIds[channelName] || null;
+            },
+            deleteChannelStartId(channelName) {
+                const channelStartIds = JSON.parse(utils.getCookie('telegram_channel_start_ids') || '{}');
+                delete channelStartIds[channelName];
+                const date = new Date();
+                date.setMonth(date.getMonth() + 1);
+                const expires = "expires=" + date.toUTCString();
+                document.cookie = "telegram_channel_start_ids=" + JSON.stringify(channelStartIds) + ";" + expires + ";path=/";
+            },
+            loadChannelStartId(channelName) {
+                const savedStartId = utils.getChannelStartId(channelName);
+                if (savedStartId) {
+                    elements.startIdInput.value = savedStartId;
+                }
+                return savedStartId;
+            },
+            loadCurrentChannelStartId() {
+                const channelName = utils.extractChannelName(elements.channelInput.value);
+                if (channelName) {
+                    return utils.loadChannelStartId(channelName);
+                }
+                return null;
+            }
+        };
+        const cache = {
+            get(channel) {
+                const cached = postCache.get(channel);
+                if (cached && Date.now() - cached.timestamp < CONFIG.CACHE_DURATION) {
+                    return cached.value;
+                }
+                postCache.delete(channel);
+                return null;
+            },
+            set(channel, value) {
+                postCache.set(channel, {
+                    value,
+                    timestamp: Date.now()
+                });
+            }
+        };
+        const manualCacheUtil = {
+            get(channel) {
+                return manualCache.get(channel) || null;
+            },
+            set(channel, value) {
+                manualCache.set(channel, value);
+            }
+        };
+        const messageChecker = {
+            async checkExists(channelName, messageId) {
+                return new Promise((resolve) => {
+                    const testContainer = utils.createTestElement();
+                    let isResolved = false;
+                    const cleanup = () => {
+                        if (!isResolved) {
+                            isResolved = true;
+                            testContainer.remove();
+                        }
+                    };
+                    const resolveWith = (result) => {
+                        if (!isResolved) {
+                            cleanup();
+                            resolve(result);
+                        }
+                    };
+                    const timeout = setTimeout(() => resolveWith(false), CONFIG.TIMEOUT_DURATION);
+                    const script = document.createElement('script');
+                    script.async = true;
+                    script.src = CONFIG.WIDGET_SCRIPT_URL;
+                    script.setAttribute('data-telegram-post', `${channelName}/${messageId}`);
+                    script.setAttribute('data-width', '100%');
+                    const verifyIframe = () => {
+                        const iframe = testContainer.querySelector('iframe');
+                        const exists = iframe && iframe.offsetHeight >= CONFIG.MIN_IFRAME_HEIGHT;
+                        clearTimeout(timeout);
+                        resolveWith(exists);
+                    };
+                    script.onload = () => {
+                        const iframe = testContainer.querySelector('iframe');
+                        if (iframe) {
+                            iframe.onload = verifyIframe;
+                            setTimeout(verifyIframe, CONFIG.LOAD_MORE_DELAY);
+                        } else {
+                            resolveWith(false);
+                        }
+                    };
+                    script.onerror = () => resolveWith(false);
+                    testContainer.appendChild(script);
+                });
+            }
+        };
+        const binarySearch = {
+            testValues: [
+                1000020, 1000000, 999980,
+                500020, 500000, 499980,
+                100020, 100000, 99980,
+                80020, 80000, 79980,
+                60020, 60000, 59980,
+                40020, 40000, 39980,
+                20020, 20000, 19980,
+                10020, 10000, 9980,
+                1020, 1000, 980,
+                120, 100, 80
+            ],
+            updateInfo(message) {
+                elements.currentChannel.innerHTML = message;
+                elements.currentChannel.classList.remove('d-none');
+                elements.currentChannel.classList.add('d-block');
+            },
+            async findLastPost(channelName) {
+                const cachedResult = cache.get(channelName);
+                if (cachedResult) {
+                    binarySearch.displayResult(channelName, cachedResult);
+                    return;
+                }
+                try {
+                    utils.setLoadingState(true, t.startingBinarySearch);
+                    binarySearch.updateInfo(t.searchingInitialRange);
+                    const { lower, upper } = await binarySearch.findInitialRange(channelName);
+                    binarySearch.updateInfo(`${t.rangeFound} ${lower} - ${upper}. ${t.startingBinarySearch}`);
+                    const lastPostId = await binarySearch.performBinarySearch(channelName, lower, upper);
+                    binarySearch.updateInfo(`${t.verifyingLastMessage} ${lastPostId}`);
+                    const finalExists = await messageChecker.checkExists(channelName, lastPostId);
+                    if (!finalExists) {
+                        throw new Error(t.noValidMessages);
+                    }
+                    cache.set(channelName, lastPostId);
+                    binarySearch.displayResult(channelName, lastPostId);
+                } catch (error) {
+                    console.error('Error in binary search:', error);
+                    utils.showError(`Error in binary search: ${error.message}`);
+                    elements.loadChannelBtn.disabled = false;
+                    elements.loadChannelBtn.textContent = t.loadChannel;
+                    utils.setLoadingState(false);
+                }
+            },
+            async findInitialRange(channelName) {
+                let lower = 1;
+                let upper = 1;
+                let foundAny = false;
+                for (const testValue of binarySearch.testValues) {
+                    binarySearch.updateInfo(`Testing message ${testValue}...`);
+                    const exists = await messageChecker.checkExists(channelName, testValue);
+                    if (exists) {
+                        lower = testValue;
+                    } else {
+                        upper = testValue;
+                        foundAny = true;
+                        break;
+                    }
+                }
+                if (!foundAny) {
+                    throw new Error('No messages found - channel may not exist or have no public messages');
+                }
+                if (lower === binarySearch.testValues[binarySearch.testValues.length - 1]) {
+                    upper = lower * 2;
+                    while (await messageChecker.checkExists(channelName, upper)) {
+                        lower = upper;
+                        upper *= 2;
+                        binarySearch.updateInfo(`${t.testingMessage} ${upper}...`);
+                    }
+                }
+                return { lower, upper };
+            },
+            async performBinarySearch(channelName, lower, upper) {
+                let lastValid = lower;
+                let quickCheckDone = false;
+                while (lower <= upper) {
+                    const mid = Math.floor((lower + upper) / 2);
+                    binarySearch.updateInfo(`Testing message ${mid}...`);
+                    const exists = await messageChecker.checkExists(channelName, mid);
+                    if (exists) {
+                        lastValid = mid;
+                        lower = mid + 1;
+                        if (upper - mid < 10 && !quickCheckDone) {
+                            quickCheckDone = true;
+                            for (let i = mid + 1; i <= upper; i++) {
+                                const quickExists = await messageChecker.checkExists(channelName, i);
+                                if (quickExists) lastValid = i;
+                                else break;
+                            }
+                            break;
+                        }
+                    } else {
+                        upper = mid - 1;
+                    }
+                }
+                if (lastValid > 0) {
+                    const forwardSteps = [10, 15, 20, 25, 30, 35, 40, 45, 50];
+                    for (const step of forwardSteps) {
+                        const nextId = lastValid + step;
+                        const exists = await messageChecker.checkExists(channelName, nextId);
+                        if (exists) {
+                            lastValid = nextId;
+                            for (let i = lastValid - step + 1; i < nextId; i++) {
+                                binarySearch.updateInfo(`Testing message ${i}...`);
+                                const intermediateExists = await messageChecker.checkExists(channelName, i);
+                                if (intermediateExists) lastValid = i;
+                            }
+                        }
+                    }
+                }
+                return lastValid;
+            },
+            displayResult(channelName, lastPostId) {
+                state.lastPostId = lastPostId;
+                state.currentChannel = channelName;
+                elements.currentChannel.innerHTML = `${t.currentlyViewing} <strong>@${channelName}</strong> (${t.latestPostId} ${lastPostId})`;
+                elements.currentChannel.classList.remove('d-none', 'alert-info');
+                elements.currentChannel.classList.add('d-block', 'alert-success');
+                binarySearch.updateInfo(`${t.searchCompleted} ${lastPostId}`);
+
+                // Reset color after a delay (mimic original behavior)
+                setTimeout(() => {
+                    elements.currentChannel.classList.remove('alert-success');
+                    elements.currentChannel.classList.add('alert-info');
+                }, 2000);
+
+                utils.setLoadingState(false);
+                elements.widgetContainer.dataset.num = 20;
+                elements.widgetContainer.innerHTML = '';
+                elements.loadChannelBtn.disabled = false;
+                elements.loadChannelBtn.textContent = t.loadChannel;
+                window.dispatchEvent(new CustomEvent('telegramLoaded'));
+            }
+        };
+        const api = {
+            async fetchLastPost(channelName) {
+                try {
+                    utils.setLoadingState(true, 'Loading latest post...');
+                    elements.currentChannel.classList.add('d-none');
+                    elements.currentChannel.classList.remove('d-block');
+                    const url = CONFIG.API_URL.replace('{channel}', channelName);
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP Error: ${response.status}`);
+                    }
+                    const { data: { attributes: { last_message_id } } } = await response.json();
+                    if (!last_message_id) {
+                        throw new Error('No messages found in response');
+                    }
+                    binarySearch.displayResult(channelName, last_message_id);
+                } catch (error) {
+                    console.error('Error fetching latest post:', error);
+                    utils.showError(`Error loading posts: ${error.message}`);
+                    elements.loadChannelBtn.disabled = false;
+                    elements.loadChannelBtn.textContent = 'Load Channel';
+                    utils.setLoadingState(false);
+                }
+            }
+        };
+        const manualSearch = {
+            async findLastPost(channelName, startId) {
+                const start = parseInt(startId, 10);
+                if (isNaN(start) || start <= 0) throw new Error('Invalid start ID');
+                utils.setLoadingState(true, 'Searching...');
+                let highestFound = null;
+                for (let offset = 1; offset <= 100; offset++) {
+                    const testId = start + offset;
+                    binarySearch.updateInfo(`Testing ${testId}...`);
+                    const exists = await messageChecker.checkExists(channelName, testId);
+                    if (exists) {
+                        highestFound = testId;
+                        for (let nextOffset = offset + 1; nextOffset <= 100; nextOffset++) {
+                            const nextId = start + nextOffset;
+                            binarySearch.updateInfo(`Testing ${nextId}...`);
+                            const nextExists = await messageChecker.checkExists(channelName, nextId);
+                            if (nextExists) {
+                                highestFound = nextId;
+                                offset = nextOffset;
+                            } else {
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    if (offset >= 10 && highestFound === null) break;
+                }
+                if (highestFound === null) {
+                    let lowestFound = null;
+                    for (let offset = 1; offset <= 100; offset++) {
+                        const testId = start - offset;
+                        if (testId < 1) break;
+                        binarySearch.updateInfo(`Testing ${testId}...`);
+                        const exists = await messageChecker.checkExists(channelName, testId);
+                        if (exists) {
+                            lowestFound = testId;
+                            highestFound = testId;
+                            for (let upOffset = 1; upOffset <= 100; upOffset++) {
+                                const upId = testId + upOffset;
+                                if (upId > start) break;
+                                binarySearch.updateInfo(`Testing ${upId}...`);
+                                const upExists = await messageChecker.checkExists(channelName, upId);
+                                if (upExists) {
+                                    highestFound = upId;
+                                } else {
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    if (highestFound === null && lowestFound !== null) {
+                        highestFound = lowestFound;
+                    }
+                }
+                let finalId;
+                if (highestFound !== null) {
+                    finalId = highestFound;
+                } else {
+                    binarySearch.updateInfo(`Testing 1...`);
+                    const existsAtOne = await messageChecker.checkExists(channelName, 1);
+                    finalId = existsAtOne ? 1 : Math.max(1, start - 100);
+                }
+                manualCacheUtil.set(channelName, finalId);
+                utils.saveChannelStartId(channelName, finalId);
+                elements.startIdInput.value = finalId;
+                binarySearch.displayResult(channelName, finalId);
+            }
+        };
+        const widgetLoader = {
+            load(start, numPosts = CONFIG.NUM_POSTS) {
+                if (!elements.widgetContainer) return;
+                iframeMonitor.start();
+                elements.loadMoreButton.classList.remove('d-none');
+                elements.loadMoreButton.classList.add('d-block');
+                const end = start - numPosts + 1;
+                const fragment = document.createDocumentFragment();
+                for (let n = start; n >= end; n--) {
+                    const script = document.createElement('script');
+                    script.async = true;
+                    script.src = CONFIG.WIDGET_SCRIPT_URL;
+                    script.setAttribute('data-telegram-post', `${state.currentChannel}/${n}`);
+                    script.setAttribute('data-width', '100%');
+                    fragment.appendChild(script);
+                    state.countPosts++;
+                }
+                elements.widgetContainer.appendChild(fragment);
+                if (end > 1) {
+                    widgetLoader.setupLoadMoreButton(end);
+                } else {
+                    elements.loadMoreButton.classList.add('d-none');
+                    elements.loadMoreButton.classList.remove('d-block');
+                }
+            },
+            setupLoadMoreButton(end) {
+                const newButton = elements.loadMoreButton.cloneNode(true);
+                elements.loadMoreButton.replaceWith(newButton);
+                newButton.addEventListener('click', () => {
+                    if (state.countPosts > CONFIG.MAX_POSTS_BEFORE_CLEAR) {
+                        state.countPosts = 0;
+                        elements.widgetContainer.innerHTML = '';
+                        setTimeout(() => { window.scrollTo(0, 0); }, 100);
+                    }
+                    const newStart = end - 1;
+                    widgetLoader.load(newStart);
+                });
+                elements.loadMoreButton = newButton;
+            }
+        };
+        const iframeMonitor = {
+            checkHeight() {
+                const iframes = document.querySelectorAll('iframe[src*="t.me"]');
+                iframes.forEach(iframe => {
+                    const { offsetHeight } = iframe;
+                    if (offsetHeight < CONFIG.MIN_IFRAME_HEIGHT && offsetHeight > 0) {
+                        iframe.style.display = 'none';
+                    }
+                });
+                state.countInterval++;
+                if (state.intervalId && state.countInterval >= CONFIG.DELETED_POST_CHECK_MAX_TIMES) {
+                    clearInterval(state.intervalId);
+                    state.countInterval = 0;
+                    state.intervalId = null;
+                }
+            },
+            start() {
+                if (state.intervalId) {
+                    clearInterval(state.intervalId);
+                }
+                state.intervalId = setInterval(() => iframeMonitor.checkHeight(), CONFIG.DELETED_POST_CHECK_INTERVAL);
+            }
+        };
+        const i18n = {
+            updateUITexts() {
+                document.getElementById('mainTitle').textContent = t.title;
+                document.getElementById('enterChannelLabel').textContent = t.enterChannel;
+                document.getElementById('byApiLabel').textContent = t.byApi;
+                document.getElementById('byBinarySearchLabel').textContent = t.byBinarySearch;
+                document.getElementById('byManualLabel').textContent = t.byManual;
+                document.getElementById('load-channel-btn').textContent = t.loadChannel;
+                document.getElementById('loadMoreBtn').textContent = t.loadMore;
+                document.getElementById('quickGuideTitle').textContent = t.quickGuideTitle;
+                document.getElementById('quickGuideDescription').textContent = t.quickGuideDescription;
+                document.getElementById('searchInfoText').textContent = t.searchInfoText;
+                document.getElementById('save-cookie-btn').textContent = t.saveAsCookie;
+                const featuresList = document.getElementById('featuresList');
+                featuresList.innerHTML = t.features.map(feature => `<li>${feature}</li>`).join('');
+            }
+        };
+        const eventListeners = {
+            init() {
+                i18n.updateUITexts();
+                updateLanguageSelector();
+                window.addEventListener('telegramLoaded', () => {
+                    if (elements.widgetContainer && state.lastPostId > 0) {
+                        state.countPosts = 0;
+                        const startPost = state.lastPostId + CONFIG.LOAD_MORE_POST;
+                        widgetLoader.load(startPost);
+                    }
+                });
+                document.querySelectorAll('input[name="method"]').forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        const isManual = document.querySelector('input[name="method"]:checked').value === 'manual';
+                        if (isManual) {
+                            elements.startIdContainer.classList.remove('d-none');
+                            elements.startIdContainer.classList.add('d-block');
+                            utils.loadCurrentChannelStartId();
+                        } else {
+                            elements.startIdContainer.classList.add('d-none');
+                            elements.startIdContainer.classList.remove('d-block');
+                        }
+                    });
+                });
+                elements.saveCookieBtn.addEventListener('click', () => {
+                    const channelName = utils.extractChannelName(elements.channelInput.value);
+                    const startId = elements.startIdInput.value.trim();
+                    if (channelName && startId) {
+                        utils.saveChannelStartId(channelName, startId);
+                        alert('Start ID for channel @' + channelName + ' saved in cookie for 30 days');
+                    } else {
+                        alert('Please enter a channel and a Start ID');
+                    }
+                });
+                elements.channelInput.addEventListener('input', () => {
+                    if (document.querySelector('input[name="method"]:checked').value === 'manual') {
+                        utils.loadCurrentChannelStartId();
+                    }
+                });
+                elements.loadChannelBtn.addEventListener('click', async () => {
+                    const channelName = utils.extractChannelName(elements.channelInput.value);
+                    if (!channelName) {
+                        alert(t.invalidChannel);
+                        return;
+                    }
+                    if (state.isLoading) return;
+                    const selectedMethod = document.querySelector('input[name="method"]:checked').value;
+                    if (selectedMethod === 'manual') {
+                        let startId = elements.startIdInput.value.trim();
+                        if (!startId) {
+                            const savedStartId = utils.getChannelStartId(channelName);
+                            if (savedStartId) {
+                                startId = savedStartId;
+                                elements.startIdInput.value = savedStartId;
+                            } else {
+                                alert('Please enter a Start ID');
+                                return;
+                            }
+                        }
+                    }
+                    utils.clearContainer();
+                    elements.loadChannelBtn.disabled = true;
+                    elements.loadChannelBtn.textContent = t.loading;
+                    elements.error.classList.add('d-none');
+                    elements.error.classList.remove('d-block');
+                    try {
+                        if (selectedMethod === 'api') {
+                            await api.fetchLastPost(channelName);
+                        } else if (selectedMethod === 'binary') {
+                            await binarySearch.findLastPost(channelName);
+                        } else if (selectedMethod === 'manual') {
+                            await manualSearch.findLastPost(channelName, elements.startIdInput.value);
+                        }
+                        if (utils.saveChannel(channelName)) {
+                            utils.displaySavedChannels();
+                        }
+                    } catch (error) {
+                        console.error('Error loading channel:', error);
+                        utils.showError(error.message);
+                    } finally {
+                        elements.loadChannelBtn.disabled = false;
+                        elements.loadChannelBtn.textContent = t.loadChannel;
+                    }
+                });
+                document.addEventListener('DOMContentLoaded', () => {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const channelParam = urlParams.get('channel');
+                    if (channelParam) {
+                        elements.channelInput.value = channelParam;
+                    }
+                    utils.addChannelsFromURL();
+                    utils.displaySavedChannels();
+                });
+                utils.addChannelsFromURL = function () {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const channelsToAdd = urlParams.get('add');
+                    if (channelsToAdd) {
+                        const channelsArray = channelsToAdd.split(',').map(ch => ch.trim()).filter(ch => ch);
+                        let addedAny = false;
+                        channelsArray.forEach(channel => {
+                            if (utils.saveChannel(channel)) {
+                                addedAny = true;
+                            }
+                        });
+                        if (addedAny) {
+                            utils.displaySavedChannels();
+                        }
+                    }
+                };
+                elements.channelInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        elements.loadChannelBtn.click();
+                    }
+                });
+            }
+        };
+        eventListeners.init();
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then((registration) => {
+                    console.log('Service Worker registrado con scope:', registration.scope);
+                }).catch((error) => {
+                    console.error('Error al registrar el service worker:', error);
+                });
+            });
+        }
+
+    </script>
+    <script nonce="{:;CSP_NONCE:}">
+        utils.saveChannel("renegadosmnm")
+        utils.saveChannel("orangerespaldo")
+        utils.saveChannel("meneasinsensura")
+        utils.saveChannel("nuevomeneame")
+        utils.saveChannel("mediatize_info")
+        utils.saveChannel("orangeterapy")
+        utils.saveChannel("yupsrespaldo")
+        utils.saveChannelStartId("renegadosmnm", utils.loadChannelStartId("renegadosmnm") ?? "13000")
+        utils.saveChannelStartId("orangerespaldo", utils.loadChannelStartId("orangerespaldo") ?? "6100")
+        utils.saveChannelStartId("meneasinsensura", utils.loadChannelStartId("meneasinsensura") ?? "50")
+        utils.saveChannelStartId("nuevomeneame", utils.loadChannelStartId("nuevomeneame") ?? "36200")
+        utils.saveChannelStartId("mediatize_info", utils.loadChannelStartId("mediatize_info") ?? "4400")
+        utils.saveChannelStartId("orangeterapy", utils.loadChannelStartId("orangeterapy") ?? "57400")
+        document.getElementById('start-id-input').value = ""
+    </script>
+:}
+
+{:^;:}

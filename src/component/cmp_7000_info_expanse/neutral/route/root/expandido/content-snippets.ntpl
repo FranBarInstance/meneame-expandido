@@ -1,0 +1,143 @@
+{:* Copyright (C) 2025 https://github.com/FranBar1966/neutral-pwa-py (See LICENCE) *:}
+
+{:data; #/data.json :}
+
+
+{:snip; current:template:body-main-content >>
+    <p class="lead text-muted px-md-2">
+        Resumidamente el <strong>Menéame Expandido</strong> es el ecosistema no oficial que surge del agregador original
+        <a target="_blank" rel="noopener nofollow" href="https://meneame.net">Menéame</a> como alternativa a la plataforma oficial.
+    </p>
+    <div class="{:;local::theme-container-class:}">
+        <h3>¿Qué es el Menéame Expandido?</h3>
+        <p>
+            Para empezar, es útil aclarar los términos: <strong>Menéame Expandido</strong> describe un fenómeno orgánico, mientras
+            que el <a href="/info/about"><strong>Expanse</strong></a> es un sitio Web o plataforma cuya temática es el <strong>Menéame Expandido</strong>. Son conceptos
+            relacionados, pero distintos.
+        </p>
+        <div class="row align-items-center mb-md-3">
+            <div class="col-lg-5 mb-lg-0">
+                <img
+                    src="{:;current->site->static:}expanse/img/expansor.jpg"
+                    alt="El Gran Expansor"
+                    class="img-fluid rounded-3"
+                >
+            </div>
+            <div class="col-lg-7 mt-3">
+                <p>
+                    Es un término emergente, acuñado inicialmente por los propios usuarios. La primera mención formal apareció
+                    en octubre de 2024 en el blog oficial de Menéame, donde @imparsifal buscaba simplemente "dar nombre a este
+                    fenómeno". Un fenómeno que, como se señalaba, va más allá de los clones e incluye los ya tradicionales
+                    canales de Telegram.
+                </p>
+                <p>
+                    Agrupa a todos los proyectos y espacios derivados o inspirados por Menéame, pero que operan fuera
+                    de su dominio y estructura oficial:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Clones o agregadores independientes:</strong> Sitios que replican o adaptan el modelo de votación y agregación
+                        de noticias, pero con sus propias reglas y enfoques.
+                    </li>
+                    <li>
+                        <strong>Canales y comunidades en Telegram:</strong> Espacios de debate creados históricamente por usuarios para comentar
+                        lo que sucede en Menéame, algunos con varios años de antigüedad.
+                    </li>
+                    <li>
+                        <strong>Proyectos con software propio:</strong> Iniciativas que, partiendo de la idea original, han desarrollado su
+                        propia plataforma con funcionalidades adaptadas al internet actual. Un ejemplo representativo es
+                        <a target="_blank" rel="noopener nofollow" href="https://app.renegados.es/es">Renegados</a>.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <blockquote class="blockquote p-4 my-5 bg-light border-start border-4 border-secondary rounded-end mb-4 mt-4">
+            <p class="mb-0 fs-5 fst-italic">
+                En esencia, el <strong>Menéame Expandido</strong> constata que la comunidad y la idea central de Menéame han desbordado los límites de su
+                plataforma original, dando lugar a un ecosistema donde conviven diferentes visiones y niveles de permisividad.
+            </p>
+        </blockquote>
+        <h3>¿Por qué surge el Menéame Expandido?</h3>
+        <p>
+            La aparición de este ecosistema no es casual. Responde principalmente a dos factores:
+        </p>
+        <ul>
+            <li>
+                <strong>Limitaciones de la plataforma original:</strong> Menéame ha experimentado ciertas limitaciones en su modelo
+                de negocio y en la forma en que se relaciona con su comunidad.
+            </li>
+            <li>
+                <strong>Evolución del internet:</strong> Refleja la evolución del internet, donde la comunidad
+                ha crecido y se ha diversificado.  Frente a un software que ronda los 15 años, alternativas como <a target="_blank" rel="noopener nofollow" href="https://app.renegados.es/es">Renegados</a> se
+                presentan como proyectos hechos "desde cero, totalmente adaptados al internet actual". A esto se suma que la
+                comunidad siempre ha buscado espacios externos para el debate, dando lugar a canales de Telegram que hoy forman
+                parte del fenómeno.
+            </li>
+            <li>
+                <strong>La búsqueda de mayor libertad editorial:</strong> Muchos proyectos surgen para ofrecer a los usuarios menos
+                restricciones, permitiendo contenidos o enfoques que la normativa estricta de Menéame oficial no admite.
+            </li>
+        </ul>
+        <h3>Actores principales</h3>
+        <p>
+            Además de los canales de Telegram, y otros proyectos que se presentan como alternativas a Menéame,
+            los actores principales son:
+        </p>
+        <ul>
+            <li>
+                <a target="_blank" rel="noopener nofollow" href="https://app.renegados.es/es"><strong>Renegados</strong></a>:
+                Se presenta como el "máximo exponente" del <strong>Expanse</strong>. Ha creado un agregador propio y promueve activamente la
+                red, creado con IA desde cero en PHP y Nuxt por @abel_rc.
+            </li>
+            <li>
+                <a target="_blank" rel="noopener nofollow" href="https://killbait.com/es/"><strong>Killbait</strong></a>:
+                Introduce un elemento innovador: el uso de Inteligencia Artificial para revisar
+                previamente las publicaciones y detectar sensacionalismo o "clickbait".
+            </li>
+            <li>
+                <a target="_blank" rel="noopener nofollow" href="https://www.mediatize.info/"><strong>Mediatize</strong></a>: A menudo mencionado como un antecedente conocido dentro de esta genealogía, aunque
+                su historia pertenece ya al pasado reciente de estos desarrollos.
+            </li>
+            <li>
+                <strong>Tardigram:</strong> Ha optado por integrarse en el fediverso (la red descentralizada de Mastodon y otras
+                plataformas).
+            </li>
+        </ul>
+        <div class="row align-items-center mb-md-3">
+            <div class="col-lg-5 mb-lg-0">
+                <img
+                    src="{:;current->site->static:}expanse/img/expansor4.jpg"
+                    alt="El Gran Expansor"
+                    class="img-fluid rounded-3"
+                >
+            </div>
+            <div class="col-lg-7 mt-3">
+                <h3>Conclusión</h3>
+                <p>
+                    El <strong>Menéame Expandido</strong> es la prueba de la vitalidad (y las tensiones) de la idea que impulsó Menéame.
+                </p>
+                <p>
+                    Más allá de simples clones, representa la adaptación y diversificación de un modelo de comunidad y agregación de
+                    contenidos en un entorno digital que demanda nuevas libertades, tecnologías y espacios de conversación.
+                </p>
+                <p>
+                    Es un ecosistema orgánico, no oficial y en constante cambio, donde coexisten proyectos que buscan complementar, competir
+                    o simplemente existir al margen del agregador original.
+                </p>
+                <p>
+                    Su futuro dependerá de la capacidad de estas plataformas para construir comunidades sostenibles y de cómo la comunidad
+                    original de Menéame interactúe con este universo expandido que ella misma ayudó a crear.
+                </p>
+            </div>
+        </div>
+
+        <blockquote class="blockquote p-4 my-5 bg-light border-start border-4 border-secondary rounded-end mb-4 mt-4">
+            <p class="mb-0 fs-5 fst-italic">
+                El <strong>Menéame Expandido</strong> no es una funcionalidad nueva de la plataforma oficial. En realidad, se trata de un
+                universo paralelo de comunidades, clones y canales que han surgido a partir del agregador de noticias.
+            </p>
+        </blockquote>
+    </div>
+:}
+
+{:^;:}

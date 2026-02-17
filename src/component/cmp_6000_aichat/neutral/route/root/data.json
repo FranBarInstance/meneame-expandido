@@ -1,0 +1,11 @@
+{
+    "data": {
+        "current": {
+            "route": {
+                "title": "AI Chat",
+                "description": "Chat with AI Assistant",
+                "h1": "AI Chat"
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "inherit": {
+        "locale": {
+            "trans": {
+                "en": {},
+                "es": {},
+                "fr": {},
+                "de": {}
+            }
+        },
+        "data": {
+            "menu": {
+                "session:": {
+                    "main": {
+                        "mapa": {
+                            "text": "Mapa Expanse",
+                            "link": "[:;data->mapa_expanse_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-map"
+                        }
+                    }
+                },
+                "session:true": {
+                    "main": {
+                        "mapa": {
+                            "text": "Mapa Expanse",
+                            "link": "[:;data->mapa_expanse_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-map"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "data": {}
+}

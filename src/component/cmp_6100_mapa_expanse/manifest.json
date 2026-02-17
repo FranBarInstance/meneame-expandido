@@ -1,0 +1,7 @@
+{
+    "uuid": "mapa_expanse_0yt2sa",
+    "name": "Mapa Expanse",
+    "description": "Provides map for Menéame Expandido",
+    "version": "0.0.0",
+    "route": "/mapa-expanse"
+}

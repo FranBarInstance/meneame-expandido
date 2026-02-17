@@ -1,0 +1,192 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-pwa-py (See LICENCE) *:}
+
+{:snip; current:template:head:resumen_0yt2sa >>
+    <style nonce="{:;CSP_NONCE:}">
+        .resumen-wrapper .ai-summary {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-left: 4px solid #6366f1;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .resumen-wrapper .ai-summary h3 {
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+        .resumen-wrapper .ai-summary-content {
+            line-height: 1.7;
+        }
+        .resumen-wrapper .ai-summary-content h1,
+        .resumen-wrapper .ai-summary-content h2,
+        .resumen-wrapper .ai-summary-content h3 {
+            color: #374151;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .resumen-wrapper .ai-summary-content h1 { font-size: 1.5rem; }
+        .resumen-wrapper .ai-summary-content h2 { font-size: 1.25rem; }
+        .resumen-wrapper .ai-summary-content h3 { font-size: 1.1rem; }
+        .resumen-wrapper .ai-summary-content p {
+            margin-bottom: 0.75rem;
+        }
+        .resumen-wrapper .ai-summary-content ul,
+        .resumen-wrapper .ai-summary-content ol {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+        }
+        .resumen-wrapper .ai-summary-content li {
+            margin-bottom: 0.25rem;
+        }
+        .resumen-wrapper .ai-summary-content code {
+            background: #e5e7eb;
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+        }
+        .resumen-wrapper .ai-summary-content pre {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+        .resumen-wrapper .ai-summary-content pre code {
+            background: transparent;
+            padding: 0;
+        }
+        .resumen-wrapper .ai-summary-content blockquote {
+            border-left: 3px solid #6366f1;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #6b7280;
+            font-style: italic;
+        }
+        .resumen-wrapper .loading-spinner {
+            text-align: center;
+            padding: 3rem;
+        }
+    </style>
+:}
+
+{:snip; resumen:urls-buttons >>
+    {:snip; resumen:btn-text-muted:{:;local::resumen_name:} >>
+        text-muted border-dark
+    :}
+    <div class="text-center text-md-start mb-3">
+        {:each; local::resumen_urls name url >>
+            <a href="{:;resumen_0yt2sa->manifest->route:}/site/{:;name:}" class="btn btn-sm btn-light my-1 me-1 me-md-2 click-load-spin {:;local::x-icon-agent:} {:snip; resumen:btn-text-muted:{:;name:} :}"> {:;name:}</a>
+        :}
+    </div>
+:}
+
+{:snip; resumen:urls-buttons-next >>
+    {:snip; resumen:btn-text-muted:{:;local::resumen_name:} >>
+        text-muted border-dark
+    :}
+    <div class="text-center text-md-start">
+    {:each; local::resumen_urls name url >>
+        <button
+            class="btn btn-sm btn-light neutral-fetch-click click-load-spin my-1 me-1 me-md-2 {:snip; resumen:btn-text-muted:{:;name:} :}"
+            data-url="{:;resumen_0yt2sa->manifest->route:}/ajax/{:;name:}"
+            data-wrap="resumen-wrapper-next"
+        ><span class="{:;local::x-icon-agent:}"></span> {:;name:}</button>
+    :}
+    </div>
+:}
+
+{:snip; resumen:ai-summary >>
+    {:filled; local::resumen_ai_summary >>
+        <div class="ai-summary">
+            <h3><span class="{:;local::x-icon-ai:}"></span> {:trans; AI Summary :}</h3>
+            <div class="ai-summary-content" data-markdown>{:;local::resumen_ai_summary:}</div>
+        </div>
+        <script nonce="{:;CSP_NONCE:}">
+            (function() {
+                function renderMarkdown() {
+                    var el = document.querySelector('[data-markdown]');
+                    if (el && window.marked) {
+                        el.innerHTML = window.marked.parse(el.textContent);
+                    }
+                }
+                if (window.marked) {
+                    renderMarkdown();
+                } else {
+                    document.addEventListener('DOMContentLoaded', function() {
+                        if (window.marked) {
+                            renderMarkdown();
+                        } else {
+                            setTimeout(function checkMarked() {
+                                if (window.marked) {
+                                    renderMarkdown();
+                                } else {
+                                    setTimeout(checkMarked, 100);
+                                }
+                            }, 100);
+                        }
+                    });
+                }
+            })();
+        </script>
+    :}
+:}
+
+{:snip; resumen:feed-info >>
+    {:filled; local::resumen_feed_feed->title >>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{:;local::resumen_feed_feed->title:}</h5>
+                {:filled; local::resumen_feed_feed->description >>
+                    <p class="card-text text-muted">{:;local::resumen_feed_feed->description:}</p>
+                :}
+                <a href="{:;local::resumen_feed_url:}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">
+                    <span class="{:;local::x-icon-rss:}"></span> {:trans; Source :}
+                </a>
+            </div>
+        </div>
+    :}
+:}
+
+{:snip; resumen:content >>
+    {:!filled; local::resumen_feed_error >>
+        <div id="resumen-wrapper" class="resumen-wrapper">
+            {:snip; resumen:urls-buttons :}
+            {:snip; resumen:ai-summary :}
+            {:snip; resumen:feed-info :}
+            <div id="resumen-wrapper-next" class="mb-3">
+                {:snip; resumen:urls-buttons-next :}
+            </div>
+        </div>
+    :}{:else;
+        <div id="resumen-wrapper" class="resumen-wrapper">
+            {:snip; resumen:urls-buttons :}
+            <div class="form-text alert alert-dismissible alert-danger" >
+                <span class="{:;local::x-icon-error:}"></span> {:trans; ERROR: :} {:trans; {:;local::resumen_feed_error:} :}
+            </div>
+        </div>
+    :}
+:}
+
+{:snip; resumen:play-ajax >>
+    {:fetch; |{:;resumen_0yt2sa->manifest->route:}/ajax/{:param; resumen_name :}|visible| >>
+        <div class="loading-spinner">{:snip; spin-2x :}</div>
+        <p class="text-center text-muted">{:trans; Generating summary... :}</p>
+    :}
+:}
+
+{:snip; resumen:play-static >>
+    {:cache; /{:;resumen_0yt2sa->manifest->config->cache_seconds:}/resumen_0yt2sa-summary-{:param; resumen_name :}/1/ >>
+        {:obj; #/../obj/resumen.json >>
+            {:snip; resumen:content :}
+        :}
+    :}
+:}
+
+{:snip; resumen:play >>
+    {:code;
+        {:param; resumen_name >> {:;resumen_name:} :}
+        {:param; resumen_url >> {:;local::resumen_urls->{:;resumen_name:}:} :}
+        {:param; resumen_valid_names >> {:;local::resumen_valid_names:} :}
+        {:snip; resumen:play-static :}
+    :}
+:}

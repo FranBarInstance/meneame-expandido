@@ -1,0 +1,96 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-starter-py (See LICENCE) *:}
+
+{:snip; current:template:body-main-content >>
+    <div class="{:;local::current->theme->class->container:}">
+        <div class="row">
+
+            {:* Card: RSS Expandido *:}
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{:trans; RSS Expandido :}</h5>
+                        <p class="card-text flex-grow-1">{:trans; Lee y visualiza feeds RSS de múltiples fuentes en una interfaz unificada. :}</p>
+                        <a href="{:;rrss_0yt2sa->manifest->route:}" class="btn btn-primary mt-auto w-100">{:trans; Acceder :}</a>
+                    </div>
+                </div>
+            </div>
+
+            {:* Card: Resumen *:}
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{:trans; Resumen de URLs :}</h5>
+                        <p class="card-text flex-grow-1">{:trans; Genera resúmenes automáticos de feeds RSS y páginas web utilizando inteligencia artificial. :}</p>
+                        <a href="{:;resumen_0yt2sa->manifest->route:}" class="btn btn-primary mt-auto w-100">{:trans; Acceder :}</a>
+                    </div>
+                </div>
+            </div>
+
+            {:* Card: AI Chat *:}
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{:trans; AI Chat :}</h5>
+                        <p class="card-text flex-grow-1">{:trans; Chatea con inteligencia artificial. Haz preguntas, genera texto o explora las capacidades de la IA. :}</p>
+                        <a href="{:;aichat_0yt2sa->manifest->route:}" class="btn btn-primary mt-auto w-100">{:trans; Acceder :}</a>
+                    </div>
+                </div>
+            </div>
+
+            {:* Card: Mapa Expanse *:}
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{:trans; Mapa Expanse :}</h5>
+                        <p class="card-text flex-grow-1">{:trans; Explora el mapa interactivo de Menéame Expandido con información geolocalizada. :}</p>
+                        <a href="{:;mapa_expanse_0yt2sa->manifest->route:}" class="btn btn-primary mt-auto w-100">{:trans; Acceder :}</a>
+                    </div>
+                </div>
+            </div>
+
+            {:* Card: Telegram Expanse *:}
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{:trans; Telegram Expanse :}</h5>
+                        <p class="card-text flex-grow-1">{:trans; Accede a la comunidad de Telegram de Menéame Expandido y únete a la conversación. :}</p>
+                        <a href="{:;telegram_expanse_0yt2sa->manifest->route:}" class="btn btn-primary mt-auto w-100">{:trans; Acceder :}</a>
+                    </div>
+                </div>
+            </div>
+
+            {:* Card: About *:}
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{:trans; Acerca de :}</h5>
+                        <p class="card-text flex-grow-1">{:trans; Conoce más sobre Menéame Expandido, su propósito, características y el equipo detrás. :}</p>
+                        <a href="{:;info_0yt2sa->manifest->route:}/about" class="btn btn-primary mt-auto w-100">{:trans; Acceder :}</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7">
+                <figure class="border-start border-4 border-primary ps-4 mb-5 mt-5">
+                    <blockquote class="blockquote mb-2">
+                        <p class="fst-italic">
+                            “Más allá de Menéame hay vida, y está en el Expanse”
+                        </p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer mt-1">
+                         <cite>El Gran Expansor</cite>
+                    </figcaption>
+                </figure>
+                <div class="row align-items-center mb-5">
+                    <img
+                        src="{:;current->site->static:}expanse/img/expansor2.jpg"
+                        alt="Placeholder image"
+                        class="img-fluid rounded-3 shadow-sm"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+:}
+
+{:^;:}

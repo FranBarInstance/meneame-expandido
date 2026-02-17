@@ -1,0 +1,95 @@
+{
+    "inherit": {
+        "locale": {
+            "trans": {
+                "es": {
+                    "Resumen IA de URLs": "Resumen IA de URLs",
+                    "Alternate sources": "Fuentes alternativas",
+                    "Source": "Fuente",
+                    "No publications": "Sin publicaciones",
+                    "No URL provided": "No se proporcionó URL",
+                    "No site name provided": "No se proporcionó nombre del sitio",
+                    "Invalid site name": "Nombre de sitio inválido",
+                    "No feed or entries found": "No se encontraron feed o entradas",
+                    "Error generating summary": "Error al generar el resumen",
+                    "AI Summary": "Resumen IA",
+                    "Generating summary...": "Generando resumen...",
+                    "Summary of": "Resumen de"
+                },
+                "fr": {
+                    "Resumen IA de URLs": "Résumé IA des URLs",
+                    "Alternate sources": "Sources alternatives",
+                    "Source": "Source",
+                    "No publications": "Sans publications",
+                    "No URL provided": "URL non fournie",
+                    "No site name provided": "Nom de site non fourni",
+                    "Invalid site name": "Nom de site invalide",
+                    "No feed or entries found": "Aucun flux ou entrée trouvée",
+                    "Error generating summary": "Erreur lors de la génération du résumé",
+                    "AI Summary": "Résumé IA",
+                    "Generating summary...": "Génération du résumé...",
+                    "Summary of": "Résumé de"
+                },
+                "de": {
+                    "Resumen IA de URLs": "KI-Zusammenfassung von URLs",
+                    "Alternate sources": "Alternative Quellen",
+                    "Source": "Quelle",
+                    "No publications": "Ohne Publikationen",
+                    "No URL provided": "URL nicht angegeben",
+                    "No site name provided": "Seitenname nicht angegeben",
+                    "Invalid site name": "Seitenname ungültig",
+                    "No feed or entries found": "Kein Feed oder Einträge gefunden",
+                    "Error generating summary": "Fehler beim Generieren der Zusammenfassung",
+                    "AI Summary": "KI-Zusammenfassung",
+                    "Generating summary...": "Zusammenfassung wird erstellt...",
+                    "Summary of": "Zusammenfassung von"
+                }
+            }
+        },
+        "data": {
+            "drawer": {
+                "menu": {
+                    "session:": {
+                        "resumen": {
+                            "name": "Resumen IA",
+                            "tabs": "resumen",
+                            "icon": "x-icon-ai"
+                        }
+                    },
+                    "session:true": {
+                        "resumen": {
+                            "name": "Resumen IA",
+                            "tabs": "resumen",
+                            "icon": "x-icon-ai"
+                        }
+                    }
+                }
+            },
+            "menu": {
+                "session:": {
+                    "resumen": {
+                        "root": {
+                            "text": "Resumen IA de URLs",
+                            "link": "[:;data->resumen_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-agent"
+                        }
+                    }
+                },
+                "session:true": {
+                    "resumen": {
+                        "root": {
+                            "text": "Resumen IA de URLs",
+                            "link": "[:;data->resumen_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-agent"
+                        }
+                    }
+                }
+            },
+            "resumen_urls": {},
+            "resumen_valid_names": ""
+        }
+    },
+    "data": {
+        "resumen_name": ""
+    }
+}

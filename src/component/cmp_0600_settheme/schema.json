@@ -1,0 +1,71 @@
+{
+    "inherit": {
+        "locale": {
+            "trans": {
+                "es": {
+                    "Theme": "Tema",
+                    "Color": "Color",
+                    "Colors": "Colores"
+                },
+                "fr": {
+                    "Theme": "Thème",
+                    "Color": "Couleur",
+                    "Colors": "Couleurs"
+                },
+                "de": {
+                    "Theme": "Thema",
+                    "Color": "Farbe",
+                    "Colors": "Farben"
+                }
+            }
+        },
+        "data": {
+            "menu": {
+                "session:": {
+                    "setting": {
+                        "settheme": "settheme_0yt2sa-menu-theme",
+                        "setcolor": "settheme_0yt2sa-menu-theme-colors"
+                    }
+                },
+                "session:true": {
+                    "setting": {
+                        "settheme": "settheme_0yt2sa-menu-theme",
+                        "setcolor": "settheme_0yt2sa-menu-theme-colors"
+                    }
+                }
+            },
+            "current": {
+                "theme":  {
+                    "allow_themes": [
+                        "flatly",
+                        "zephyr",
+                        "simplex",
+                        "cosmo",
+                        "litera",
+                        "united",
+                        "brite",
+                        "cerulean",
+                        "journal",
+                        "darkly",
+                        "lumen",
+                        "lux",
+                        "materia",
+                        "minty",
+                        "pulse",
+                        "sandstone",
+                        "sketchy",
+                        "spacelab",
+                        "yeti"
+                    ],
+                    "allow_colors": [
+                        "primary",
+                        "dark",
+                        "light",
+                        "tertiary"
+                    ]
+                }
+            }
+        }
+    },
+    "data": {}
+}

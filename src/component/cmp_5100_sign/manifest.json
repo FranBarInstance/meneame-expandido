@@ -1,0 +1,12 @@
+{
+    "uuid": "sign_0yt2sa",
+    "name": "Sign",
+    "description": "Sign in and up",
+    "version": "0.0.0",
+    "route": "/sign",
+    "required": {
+        "component": {
+            "ftoken_0yt2sa": "0.0.x"
+        }
+    }
+}

@@ -1,0 +1,33 @@
+
+
+{:*
+    Sign forms modal
+    ----------------
+*:}
+
+{:snip; sign:template-modals >>
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="logoutModalLabel">{:trans; Sign out :}</h1>
+                    {:snip; util:modal-back-button :}
+                </div>
+                <div class="modal-body mx-md-5 mb-3 mx-auto text-center">
+                    <div class="mt-4 px-5">
+                        {:fetch; |{:;sign_0yt2sa->manifest->route:}/out/form/{:;LTOKEN:}|click| >>
+                            <button type="button" class="btn btn-primary w-100 {:;local::x-icon-sign-out:}"> {:trans; Confirm logout :}</button>
+                        :}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{:trans; Close :}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+:}
+
+{:moveto; /body >>
+    {:snip; sign:template-modals :}
+:}

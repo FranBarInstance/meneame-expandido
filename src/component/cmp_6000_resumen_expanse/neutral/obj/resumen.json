@@ -1,0 +1,15 @@
+{
+    "engine": "Python",
+    "file": "{:;resumen_0yt2sa->path:}/src/resumen.py",
+    "schema": false,
+    "venv": "{:;VENV_DIR:}",
+    "params": {
+        "resumen_name": "{:param; resumen_name :}",
+        "resumen_url": "{:param; resumen_url :}",
+        "resumen_valid_names": "{:param; resumen_valid_names :}",
+        "prompt": "{:;resumen_0yt2sa->manifest->config->prompt:}",
+        "profile": "{:;resumen_0yt2sa->manifest->config->default_profile:}"
+    },
+    "callback": "main",
+    "template": ""
+}

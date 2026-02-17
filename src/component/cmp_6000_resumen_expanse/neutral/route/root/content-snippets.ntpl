@@ -1,0 +1,29 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-pwa-py (See LICENCE) *:}
+
+{:*
+    Disable carousel
+    ----------------
+*:}
+{:snip; current:template:body-carousel >> :}
+
+{:snip; current:template:meta-title-description >>
+    <title>{:trans; Resumen IA de URLs :} | {:trans; {:;current->site->name:} :}</title>
+    <meta name="description" content="{:trans; Genera resúmenes de feeds RSS usando modelos de IA :}" />
+:}
+
+{:snip; current:template:page-h1 >>
+    <div class="container my-3">
+        <h1 class="border-bottom p-2">{:trans; Resumen IA de URLs :}</h1>
+    </div>
+:}
+
+{:snip; current:template:body-main-content >>
+    <div class="{:;local::current->theme->class->container:}">
+        {:snip; resumen:urls-buttons :}
+        <div class="form-text text-center alert alert-dismissible alert-light py-3 mt-3">
+            <span class="{:;local::x-icon-ai:}"></span> {:trans; Selecciona una fuente para generar un resumen con IA :}
+        </div>
+    </div>
+:}
+
+{:^;:}

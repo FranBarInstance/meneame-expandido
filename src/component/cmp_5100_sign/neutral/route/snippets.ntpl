@@ -1,0 +1,24 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-pwa-py (See LICENCE) *:}
+
+{:snip; sign:template:body-main-content >>
+    <div class="container p-0">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-7 col-12 max-w-550px">
+                <div class="card border-light mb-3 mt-md-4">
+                    <div class="card-body px-md-4 pb-md-4 pt-md-3 p-2">
+                        {:snip; {:param; form :}-wrapper :}
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-auto">
+                        <a href="{:;local::menu->session:->user->reminder->link:}" class="btn btn-light btn-sm {:;local::x-icon-sign-reminder:} {:param; disabled-reminder :}"> {:trans; Reminder :}</a>
+                    </div>
+                    <div class="col text-end">
+                        <a href="{:;local::menu->session:->user->login->link:}" class="btn btn-light btn-sm {:;local::x-icon-sign-in:} {:param; disabled-login :}"> {:trans; Sign in :}</a>
+                        <a href="{:;local::menu->session:->user->register->link:}" class="btn btn-light btn-sm {:;local::x-icon-sign-up:} {:param; disabled-register :}"> {:trans; Sign up :}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+:}

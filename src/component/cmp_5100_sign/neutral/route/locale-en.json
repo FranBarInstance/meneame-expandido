@@ -1,0 +1,32 @@
+{
+    "_comment_:trans": "You can also translate from English to English",
+    "trans": {
+        "en": {
+            "ref:sign_in_form_error_set_true": "error",
+            "ref:sign_in_form_error_set_false": "error",
+            "ref:sign_in_form_error_required_true": "Required",
+            "ref:sign_in_form_error_required_false": "Not required",
+            "ref:sign_in_form_error_minlength": "Very short",
+            "ref:sign_in_form_error_maxlength": "Very large",
+            "ref:sign_in_form_error_regex": "Invalid characters",
+            "ref:sign_in_form_error_value": "Invalid value",
+            "ref:sign_in_form_error_unsetmatch": "Unset match",
+            "ref:sign_in_form_error_match": "Does not match",
+            "ref:sign_in_form_error_dns": "Invalid domain",
+            "ref:sign_up_form_error_set_true": "error",
+            "ref:sign_up_form_error_set_false": "error",
+            "ref:sign_up_form_error_required_true": "Required",
+            "ref:sign_up_form_error_required_false": "Not required",
+            "ref:sign_up_form_error_minage": "Invalid date",
+            "ref:sign_up_form_error_maxage": "Invalid date",
+            "ref:sign_up_form_error_minlength": "Very short",
+            "ref:sign_up_form_error_maxlength": "Very large",
+            "ref:sign_up_form_error_regex": "Invalid characters",
+            "ref:sign_up_form_error_value": "Invalid value",
+            "ref:sign_up_form_error_unsetmatch": "Unset match",
+            "ref:sign_up_form_error_match": "Does not match",
+            "ref:sign_up_form_error_dns": "Invalid domain",
+            "help": "help"
+        }
+    }
+}

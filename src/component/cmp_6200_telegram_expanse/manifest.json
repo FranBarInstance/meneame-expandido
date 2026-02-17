@@ -1,0 +1,7 @@
+{
+    "uuid": "telegram_expanse_0yt2sa",
+    "name": "Telegram Expanse",
+    "description": "Provides telegram ban bypass page for Menéame Expandido",
+    "version": "0.0.0",
+    "route": "/telegram-expanse"
+}

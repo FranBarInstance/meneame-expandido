@@ -1,0 +1,14 @@
+{
+    "inherit": {
+        "data": {
+            "current": {
+                "forms": {
+                    "class": "forms-bt5-clean border border-0",
+                    "field-spacing": "mb-2",
+                    "field-send-spacing": "mt-3"
+                }
+            }
+        }
+    },
+    "data": {}
+}

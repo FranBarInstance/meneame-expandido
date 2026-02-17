@@ -1,0 +1,17 @@
+{
+    "data": {
+        "current": {
+            "theme": {
+                "color": "dark",
+                "class": {
+                    "body": "bg-black"
+                }
+            },
+            "route": {
+                "title": "Mapa Meneame Expandido ",
+                "description": "Meneame Expandido, mapa del sitema planetario de componentes.",
+                "h1": "Mapa Expanse"
+            }
+        }
+    }
+}

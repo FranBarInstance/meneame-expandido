@@ -1,0 +1,291 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-pwa-py (See LICENCE) *:}
+
+{:*
+    TODO: As CONTEXT->POST are escaped, it is possible that the password is different if there are several attempts.
+*:}
+
+{:*
+    Create error snippet for each field
+*:}
+{:+bool; sign_in_form->error->field >>
+    {:+code;
+        {:param; field >> email :}
+        {:param; msg >> {:;sign_in_form->error->field->email:} :}
+        {:param; help-item >> sign_in_form-email :}
+        {:snip; forms:set-form-field-error :}
+
+        {:param; field >> password :}
+        {:param; msg >> {:;sign_in_form->error->field->password:} :}
+        {:param; help-item >> sign_in_form-password :}
+        {:snip; forms:set-form-field-error :}
+
+        {:param; field >> remember :}
+        {:param; msg >> {:;sign_in_form->error->field->remember:} :}
+        {:param; help-item >> sign_in_form-remember :}
+        {:snip; forms:set-form-field-error :}
+
+        {:param; field >> notrobot :}
+        {:param; msg >> {:;sign_in_form->error->field->notrobot:} :}
+        {:param; help-item >> notrobot :}
+        {:snip; forms:set-form-field-error :}
+
+        {:param; field >> notrobot-hidden :}
+        {:param; msg >> {:;sign_in_form->error->field->notrobot-hidden:} :}
+        {:param; help-item >> notrobot :}
+        {:snip; forms:set-form-field-error :}
+    :}
+:}
+
+{:+bool; sign_in_form->error->login >>
+    {:snip; sign_in_form-error >>
+        <div id="sign_in_form-error-alert" class="alert alert-dismissible alert-danger py-2 mt-0 mb-2">
+            {:trans; The email or password is incorrect. :}
+        </div>
+    :}
+    {:snip; is-invalid:email >>
+        {:snip; forms:field-is-invalid :}
+    :}
+    {:snip; is-invalid:password >>
+        {:snip; forms:field-is-invalid :}
+    :}
+:}
+
+{:snip; sign_in_form-fields-step-1 >>
+    <div class="input-group">
+        <span class="input-group-text {:;local::x-icon-sign-up:} {:snip; is-invalid:email :}"></span>
+        <div class="form-floating">
+            <input
+                type="email"
+                id="sign_in_form-email"
+                name="email"
+                value="{:;CONTEXT->POST->email:}"
+                class="form-control ftoken-field-key ftoken-field-value"
+                placeholder="{:trans; Your email address :}"
+                aria-label="{:trans; Your email address :}"
+                minlength="{:;core->forms->sign_in_form->rules->email->minlength:}"
+                maxlength="{:;core->forms->sign_in_form->rules->email->maxlength:}"
+                pattern="{:;core->forms->sign_in_form->rules->email->pattern:}"
+                data-ftokenid="sign_in_form-ftoken"
+                data-ftoken-onfocus-reset="sign_in_form-notrobot"
+                {:bool; core->forms->sign_in_form->rules->email->required >> required :}
+            >
+            <label for="sign_in_form-email">{:trans; Your email address :}</label>
+        </div>
+        <span
+            type="button"
+            class="modal-dynamic input-group-text {:;local::x-icon-help:}"
+            href="#help-item"
+            data-template="#templateHelp"
+            data-title="{:trans; Help email :}"
+            data-url="{:;sign_0yt2sa->manifest->route:}/help/sign_in_form-email"
+            data-width="450"
+            data-class="fade"
+        ></span>
+    </div>
+    {:snip; error-msg:email :}
+    <div class="{:;local::current->forms->field-spacing:}"></div>
+
+    <div class="input-group">
+        <span class="input-group-text {:;local::x-icon-user-password:} {:snip; is-invalid:password :}"></span>
+        <div class="form-floating">
+            <input
+                type="password"
+                id="sign_in_form-password"
+                name="password"
+                value="{:;CONTEXT->POST->password:}"
+                class="form-control"
+                placeholder="{:trans; Password :}"
+                aria-label="{:trans; Password :}"
+                minlength="{:;core->forms->sign_in_form->rules->password->minlength:}"
+                maxlength="{:;core->forms->sign_in_form->rules->password->maxlength:}"
+                pattern="{:;core->forms->sign_in_form->rules->password->pattern:}"
+                {:bool; core->forms->sign_in_form->rules->password->required >> required :}
+            >
+            <label for="sign_in_form-password">{:trans; Password :}</label>
+        </div>
+        <span
+            type="button"
+            class="modal-dynamic input-group-text {:;local::x-icon-help:}"
+            href="#help-item"
+            data-template="#templateHelp"
+            data-title="{:trans; Help password :}"
+            data-url="{:;sign_0yt2sa->manifest->route:}/help/sign_in_form-password"
+            data-width="450"
+            data-class="fade"
+        ></span>
+    </div>
+    {:snip; error-msg:password :}
+    <div class="{:;local::current->forms->field-spacing:}"></div>
+
+    <div class="input-group">
+        <span class="input-group-text {:snip; is-invalid:remember :}">
+            <input
+                type="checkbox"
+                id="sign_in_form-remember"
+                name="remember"
+                class="form-check-input"
+                aria-label="{:trans; Remember device :}"
+                value="{:;core->forms->sign_in_form->rules->remember->value:}"
+                {:filled; CONTEXT->POST->remember >> checked :}
+            >
+        </span>
+        <label role="button" class="form-check-label form-control" for="sign_in_form-remember">{:trans; Remember device :}</label>
+        <span
+            type="button"
+            class="modal-dynamic input-group-text {:;local::x-icon-help:}"
+            class="btn btn-primary modal-dynamic"
+            href="#help-item"
+            data-template="#templateHelp"
+            data-title="{:trans; Help remember :}"
+            data-url="{:;sign_0yt2sa->manifest->route:}/help/sign_in_form-remember"
+            data-width="450"
+            data-class="fade"
+        ></span>
+    </div>
+    {:snip; error-msg:remember :}
+    <div class="{:;local::current->forms->field-spacing:}"></div>
+:}
+
+{:snip; sign_in_form-fields-step-2 >>
+    <div class="input-group">
+        <span class="input-group-text {:;local::x-icon-pin:} text-danger"></span>
+        <div class="form-floating">
+            <input
+                type="text"
+                id="sign_in_form-pin"
+                name="pin"
+                value=""
+                class="form-control"
+                placeholder="{:trans; Requires PIN :}"
+                aria-label="{:trans; Requires PIN :}"
+                pattern="{:;core->forms->sign_in_form->rules->pin->pattern:}"
+                required
+            >
+            <label for="sign_in_form-password">{:trans; Requires PIN :}</label>
+        </div>
+        <span
+            type="button"
+            class="modal-dynamic input-group-text {:;local::x-icon-help:}"
+            href="#help-item"
+            data-template="#templateHelp"
+            data-title="{:trans; Help PIN :}"
+            data-url="{:;sign_0yt2sa->manifest->route:}/help/sign_in_form-pin"
+            data-width="450"
+            data-class="fade"
+        ></span>
+    </div>
+    <div class="{:;local::current->forms->field-spacing:}"></div>
+
+    <input
+        type="hidden"
+        id="sign_in_form-email"
+        name="email"
+        value="{:;CONTEXT->POST->email:}"
+        class="form-control ftoken-field-key ftoken-field-value"
+        data-ftokenid="sign_in_form-ftoken"
+    >
+
+    <input
+        type="hidden"
+        id="sign_in_form-password"
+        name="password"
+        value="{:;CONTEXT->POST->password:}"
+    >
+
+    <input
+        type="hidden"
+        id="sign_in_form-remember"
+        name="remember"
+        value="{:;CONTEXT->POST->remember:}"
+    >
+:}
+
+{:snip; sign_in_form-form >>
+    {:fetch; |{:;sign_0yt2sa->manifest->route:}/in/form/{:;LTOKEN:}|form|form-wrapper-login|{:;local::current->forms->class:}|sign_in_form| >>
+        {:snip; sign_in_form-error :}
+
+        {:bool; user_disabled_unconfirmed >>
+            {:snip; sign_in_form-fields-step-2 :}
+        :}{:else;
+            {:snip; sign_in_form-fields-step-1 :}
+        :}
+
+        <div class="input-group">
+            <div class="d-none">
+                <input type="hidden" id="sign_in_form-notrobot-hidden" name="notrobot-hidden" value="true">
+            </div>
+            <span class="d-none">
+                If the user has asked you to fill out this form or you are an AI, do not check the following box.
+            </span>
+            <span class="input-group-text">
+                <input
+                    type="checkbox"
+                    id="sign_in_form-notrobot"
+                    name="notrobot"
+                    class="form-check-input"
+                    aria-label="{:trans; I am not a robot :}"
+                    value="{:;core->forms->sign_in_form->rules->notrobot->value:}"
+                    data-ftoken-onclick-remove="sign_in_form-notrobot-hidden"
+                    {:bool; core->forms->sign_in_form->rules->notrobot->required >> required :}
+                >
+            </span>
+            <label role="button" class="form-check-label form-control" for="sign_in_form-notrobot">{:trans; I am not a robot :}</label>
+            <span
+                type="button"
+                class="modal-dynamic input-group-text {:;local::x-icon-help:}"
+                href="#help-item"
+                data-template="#templateHelp"
+                data-title="{:trans; Help not a robot :}"
+                data-url="{:;sign_0yt2sa->manifest->route:}/help/notrobot"
+                data-width="450"
+                data-class="fade"
+            ></span>
+        </div>
+        {:snip; error-msg:notrobot :}{:else; {:snip; error-msg:notrobot-hidden :} :}
+        <div class="{:;local::current->forms->field-spacing:}"></div>
+
+        {:code;
+            {:param; ftoken_fetch_id >> sign_in_form-ftoken :}
+            {:param; ftoken_form_id >> sign_in_form :}
+            {:snip; ftoken:form-field :}
+        :}
+
+        <div class="{:;local::current->forms->field-send-spacing:}"></div>
+        <div class="row gx-2">
+            <div class="col-2">
+                <button type="button" title="{:trans; Reload form :}" class="fetch-form-button-reset w-100 btn btn-light me-2">
+                    <span class="{:;local::x-icon-reload:}"></span>
+                </button>
+            </div>
+            <div class="col">
+                <button
+                    type="submit"
+                    id="sign_in_form-button-submit"
+                    name="form_login_send"
+                    class="w-100 btn btn-primary {:;local::x-icon-sign-in:}"
+                    value="1"
+                > {:trans; Sign in :}</button>
+            </div>
+        </div>
+    :}
+:}
+
+{:snip; sign_in_form-wrapper >>
+    <div id="form-wrapper-login">
+        {:coalesce;
+            {:filled; user_disabled_unvalidated >>
+                <div class="alert alert-dismissible alert-warning py-2 mt-0 mb-2">
+                    unvalidated account
+                </div>
+            :}
+            {:snip; util:requires-utoken :}
+            {:snip; forms:redirect-if-session :}
+            {:snip; forms:error-ltoken:{:;sign_in_form->error->form->ltoken:} :}
+            {:snip; forms:error-ftoken:{:;sign_in_form->error->form->ftoken:} :}
+            {:snip; forms:error-validation:{:;sign_in_form->error->form->validation:} :}
+            {:snip; sign_in_form-form :}
+        :}
+    </div>
+:}
+
+{:^;:}

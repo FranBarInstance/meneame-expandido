@@ -1,0 +1,102 @@
+{
+    "inherit": {
+        "locale": {
+            "current": "en",
+            "trans": {
+                "en": {
+                    "ref:locale:en": "English",
+                    "ref:locale:es": "Español",
+                    "ref:locale:de": "Deutsch",
+                    "ref:locale:fr": "Français"
+                },
+                "es": {
+                    "ref:locale:en": "English",
+                    "ref:locale:es": "Español",
+                    "ref:locale:de": "Deutsch",
+                    "ref:locale:fr": "Français",
+                    "Language": "Idioma",
+                    "Open": "Abrir",
+                    "Close": "Cerrar",
+                    "Menu": "Menú",
+                    "Back": "Volver"
+                },
+                "fr": {
+                    "ref:locale:en": "English",
+                    "ref:locale:es": "Español",
+                    "ref:locale:de": "Deutsch",
+                    "ref:locale:fr": "Français",
+                    "Language": "Langue",
+                    "Open": "Ouvrir",
+                    "Close": "Fermer",
+                    "Menu": "Menu",
+                    "Back": "Retour"
+                },
+                "de": {
+                    "ref:locale:en": "English",
+                    "ref:locale:es": "Español",
+                    "ref:locale:de": "Deutsch",
+                    "ref:locale:fr": "Français",
+                    "Language": "Sprache",
+                    "Open": "Öffnen",
+                    "Close": "Schließen",
+                    "Menu": "Menü",
+                    "Back": "Zurück"
+                }
+            }
+        },
+        "data": {
+            "drawer": {
+                "menu": {
+                    "session:": {
+                        "setting": {
+                            "name": "Setting",
+                            "tabs": "setting",
+                            "icon": "x-icon-setting"
+                        }
+                    },
+                    "session:true": {
+                        "setting": {
+                            "name": "Setting",
+                            "tabs": "setting",
+                            "icon": "x-icon-setting"
+                        }
+                    }
+                }
+            },
+            "menu": {
+                "session:": {
+                    "setting": {
+                        "language": "locale_0yt2sa-menu-language"
+                    }
+                },
+                "session:true": {
+                    "setting": {
+                        "language": "locale_0yt2sa-menu-language"
+                    }
+                }
+            },
+            "navbar": {
+                "menu": {
+                    "session:": {
+                        "language": {}
+                    },
+                    "session:true": {
+                        "language": {}
+                    }
+                }
+            }
+        }
+    },
+    "data": {
+        "current": {
+            "site": {
+                "languages": [
+                    "en",
+                    "es",
+                    "fr",
+                    "de"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-pwa-py (See LICENCE) *:}
+
+{:data; {:flg; require :} >> #/data.json :}
+
+{:!include; {:flg; require :} >> #/form/snippets.ntpl :}
+
+{:snip; current:template:body-main-content >>
+    <div class="{:;local::current->theme->class->container:} mb-5">
+        {:code;
+            {:param; form >> sign_in_form :}
+            {:param; disabled-login >> disabled :}
+            {:snip; sign:template:body-main-content :}
+        :}
+    </div>
+:}
+
+{:^;:}

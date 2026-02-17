@@ -1,0 +1,125 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-starter-py (See LICENCE) *:}
+
+
+{:snip; current:template:nav-cache-key >>
+    current-template-nav-cache-key-{:;HAS_SESSION_STR:}
+    {:;local::current->theme->color:}
+:}
+
+{:snip; current:template:cache-key >>
+    {:;local::current->theme->theme:}
+    {:;local::current->theme->color:}
+    {:;CONTEXT->HEADERS->Requested-With-Ajax:}
+    {:;HAS_SESSION:}
+:}
+
+{:snip; current:template:error-cache-key >>
+    {:;local::current->theme->theme:}
+    {:;local::current->theme->color:}
+    {:;HAS_SESSION:}
+    {:;CONTEXT->HEADERS->Requested-With-Ajax:}
+    {:;HTTP_ERROR->code:}
+    {:;HTTP_ERROR->text:}
+    {:;HTTP_ERROR->param:}
+:}
+
+
+{:snip; current:template:head:theme_0yt2sa >>
+    <link nonce="{:;CSP_NONCE:}" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.8/{:;local::current->theme->theme:}/bootstrap.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link nonce="{:;CSP_NONCE:}" rel="stylesheet" href="{:;current->site->static:}css/neutral-custom.min.css" />
+    {:snip; current:template:heading-medium :}
+:}
+
+{:snip; current:template:body-end:theme_0yt2sa >>
+    <script nonce="{:;CSP_NONCE:}" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script nonce="{:;CSP_NONCE:}">
+        function handleThemeLightDarkToggle() {
+            const html = document.documentElement;
+            const currentTemeMode = html.getAttribute('data-bs-theme');
+            const newTemeMode = currentTemeMode === 'dark' ? 'light' : 'dark';
+            const mainNavBarEle = document.getElementById('main-navbar');
+            document.cookie = `dark-mode-on=${newTemeMode === 'dark' ? '1' : '0'}; path=/; max-age=2592000`;
+            html.setAttribute('data-bs-theme', newTemeMode);
+            if (newTemeMode === 'dark' ) {
+                mainNavBarEle.classList.add('bg-body-tertiary');
+                mainNavBarEle.setAttribute('data-bs-theme', 'dark');
+            } else {
+                mainNavBarEle.classList.remove('bg-body-tertiary');
+                mainNavBarEle.classList.add('{:;local::current->theme->config->{:;local::current->theme->theme:}->{:;local::current->theme->color:}->class:}');
+                mainNavBarEle.setAttribute('data-bs-theme', '{:;local::current->theme->config->{:;local::current->theme->theme:}->{:;local::current->theme->color:}->theme:}');
+            }
+        }
+    </script>
+    <script nonce="{:;CSP_NONCE:}">
+        const darkModeOn = document.cookie.split('; ').find(row => row.startsWith('dark-mode-on='))?.split('=')[1];
+        if (darkModeOn === '1') {
+            handleThemeLightDarkToggle();
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggles = document.querySelectorAll('.theme-light-dark-toggle');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    handleThemeLightDarkToggle(this);
+                });
+            });
+        });
+    </script>
+:}
+
+{:snip; current:template:body-lateral-bar >>
+    <div class="container p-0">
+        <a href="/" class="mb-4">
+            <img src="{:;current->site->static:}expanse/img/expanse-w1.jpg" width="100%" alt="Expanse logo">
+        </a>
+        <div class="list-group list-group-flush border-bottom scrollarea">
+            <a target="_blank" href="https://app.renegados.es/es" class="list-group-item list-group-item-action py-3 lh-sm">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class="mb-1">Renegados</strong>
+                    <small class="text-body-secondary"></small>
+                </div>
+                <div class="mb-1 small">Renegados es una plataforma para el pensamiento crítico y el debate constructivo.</div>
+            </a>
+            <a href="/info/about" class="list-group-item list-group-item-action py-3 lh-sm">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class="mb-1">Expanse</strong>
+                    <small class="text-body-secondary"></small>
+                </div>
+                <div class="mb-1 small">Expanse es un proyecto sin ánimo de lucro para informar de lo que pasa en el Menéame Expandido.</div>
+            </a>
+            <a href="/info/expandido" class="list-group-item list-group-item-action py-3 lh-sm">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class="mb-1">Menéame Expandido</strong>
+                    <small class="text-body-secondary"></small>
+                </div>
+                <div class="mb-1 small">Ecosistema de Menéame y sus comunidades derivadas, Webs, agregadores y canales de Telegram surgidos de Menéame.</div>
+            </a>
+            <a target="_blank" href="https://github.com/FranBarInstance/neutral-starter-py" class="list-group-item list-group-item-action py-3 lh-sm">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class="mb-1">Código abierto</strong>
+                    <small class="text-body-secondary"></small>
+                </div>
+                <div class="mb-1 small">Expanse se ha creado con Neutral TS Starter Py, un scaffold modular para construir aplicaciones web progresivas (PWA). </div>
+            </a>
+        </div>
+    </div>
+:}
+
+{:snip; current:template:body-footer >>
+    <footer class="mb-4">
+        <div class="container">
+            <div class="text-center w-100 mx-auto">
+                <hr class="mx-2">
+                <div class="small">
+                    <p>
+                        Acerca de: <a href="/info/about">Expanse</a>.
+                        Creado con: <a target="_blank" href="https://github.com/FranBarInstance/neutral-starter-py">Neutral TS</a>.
+                    </p>
+                    <p>
+                        Menéame, Renegados, Mediatice, Tardigram, Killbait y otros sitios mencionados no están asociados a Expanse, son proyectos independientes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+:}

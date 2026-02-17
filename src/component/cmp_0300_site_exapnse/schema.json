@@ -1,0 +1,45 @@
+{
+    "inherit": {
+        "locale": {
+            "trans": {
+                "en": {},
+                "es": {},
+                "fr": {},
+                "de": {}
+            }
+        },
+        "data": {
+            "drawer": {
+                "name": "Expanse"
+            },
+            "current": {
+                "route": {
+                    "title": "Menéame Expandido",
+                    "description": "Menéame Expandido es el ecosistema no oficial que surge del agregador original Menéame como alternativa a la plataforma oficial. "
+                }
+            },
+            "navbar": {
+                "menu": {
+                    "session:": {
+                        "language": {}
+                    },
+                    "session:true": {
+                        "language": {}
+                    }
+                }
+            }
+        }
+    },
+    "data": {
+        "current": {
+            "site": {
+                "name": "Expanse",
+                "title": "Menéame Expandido",
+                "description": "Menéame Expandido es el ecosistema no oficial que surge del agregador original Menéame como alternativa a la plataforma oficial. ",
+                "cover": "/img/cover.jpg",
+                "logo": "/img/logo.jpg",
+                "static": "/"
+            }
+        }
+    }
+}

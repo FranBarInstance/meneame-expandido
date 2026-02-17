@@ -1,0 +1,26 @@
+{:* Copyright (C) 2025 https://github.com/FranBarInstance/neutral-pwa-py (See LICENCE) *:}
+
+{:data; {:flg; require :} >> #/data.json :}
+
+{:snip; current:template:body-main-content >>
+    <div class="{:;local::current->theme->class->container:} mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-7 col-12 max-w-480px">
+                <div class="card border-light mb-3 mt-md-4">
+                    <div class="card-body px-4 pb-4 pt-3">
+                        {:bool; HAS_SESSION >>
+                            {:fetch; |{:;sign_0yt2sa->manifest->route:}/out/form/{:;LTOKEN:}|click| >>
+                                <button type="button" class="btn btn-primary w-100 {:;local::x-icon-sign-out:}"> {:trans; Confirm logout :}</button>
+                            :}
+                        :}{:else;
+                            {:snip; util:reload-page-home :}
+                        :}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+:}
+
+
+{:^;:}
