@@ -4,8 +4,7 @@ set -eu
 REPO_OWNER="FranBarInstance"
 REPO_NAME="meneame-expandido"
 REPO_SLUG="${REPO_OWNER}/${REPO_NAME}"
-REPO_URL="https://github.com/${REPO_SLUG}.git"
-API_TAGS_URL="https://api.github.com/repos/${REPO_SLUG}/tags?per_page=100"
+API_TAGS_URL="https://api.github.com/repos/${REPO_SLUG}/tags?per_page=1"
 
 tty_available() {
   [ -r /dev/tty ] && [ -w /dev/tty ]
@@ -67,33 +66,13 @@ require_cmd() {
 }
 
 resolve_latest_tag() {
-  if command -v git >/dev/null 2>&1; then
-    tag="$(
-      git ls-remote --tags --refs "$REPO_URL" 2>/dev/null \
-      | awk '{print $2}' \
-      | sed 's#refs/tags/##' \
-      | sort -V \
-      | tail -n 1
-    )"
-    if [ -n "$tag" ]; then
-      printf "%s" "$tag"
-      return 0
-    fi
-  fi
-
-  if command -v curl >/dev/null 2>&1; then
-    tag="$(
-      curl -fsSL "$API_TAGS_URL" 2>/dev/null \
-      | sed -n 's/.*"name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
-      | head -n 1
-    )"
-    if [ -n "$tag" ]; then
-      printf "%s" "$tag"
-      return 0
-    fi
-  fi
-
-  return 1
+  tag="$(
+    curl -fsSL "$API_TAGS_URL" 2>/dev/null \
+    | sed -n 's/.*"name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
+    | head -n 1
+  )"
+  [ -n "$tag" ] || return 1
+  printf "%s" "$tag"
 }
 
 generate_secret_key() {
@@ -151,7 +130,6 @@ install_from_tag() {
   mkdir -p "$target_dir"
   tar -xzf "$archive" -C "$tmp_dir"
 
-  # Copy extracted content into target directory.
   if [ -d "$extracted_root" ]; then
     (cd "$extracted_root" && tar -cf - .) | (cd "$target_dir" && tar -xf -)
   else
@@ -168,6 +146,10 @@ main() {
   require_cmd awk
   require_cmd mktemp
   tty_available || die "Este instalador requiere terminal interactiva (TTY)."
+
+  if [ "$(uname -s)" != "Darwin" ]; then
+    warn "Este script está orientado a macOS. En Linux usa bin/install.sh."
+  fi
 
   latest_tag="$(resolve_latest_tag)" || die "No se pudo resolver el último tag del repositorio."
   say "Último tag detectado: ${latest_tag}"

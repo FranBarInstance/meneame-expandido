@@ -48,6 +48,31 @@ Actualmente, la aplicación se encuentra en **fase de desarrollo activo**.
 
 ### 2. Configuración del Entorno
 
+#### Instalación automática (recomendada)
+
+**Linux:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/FranBarInstance/meneame-expandido/master/bin/install.sh | sh
+```
+
+**macOS:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/FranBarInstance/meneame-expandido/master/bin/install-mac.sh | sh
+```
+
+**Windows (PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/FranBarInstance/meneame-expandido/master/bin/install.ps1 | iex
+```
+
+Estos instaladores:
+- Descargan el último tag.
+- Preguntan el directorio de instalación.
+- Configuran `.venv` e instalan dependencias.
+- Generan `config/.env` y un `SECRET_KEY` aleatorio.
+- Crean un usuario inicial (con contraseña mínima de 8 caracteres).
+- Preguntan si quieres ejecutar la app al finalizar y muestran la URL final.
+
 #### Linux / macOS
 ```bash
 # Crear entorno virtual
