@@ -27,6 +27,39 @@
     </style>
 :}
 
+{:snip; current:template:body-end:resumen_0yt2sa >>
+    <script nonce="{:;CSP_NONCE:}">
+        function resumenRenderMarkdown() {
+            if (!window.marked || !window.marked.parse) {
+                return false;
+            }
+            document.querySelectorAll('[data-markdown]:not([data-markdown-rendered])').forEach(function(el) {
+                el.innerHTML = window.marked.parse(el.textContent);
+                el.setAttribute('data-markdown-rendered', '1');
+            });
+            return true;
+        }
+
+        function resumenDispatchMarkdown(retries) {
+            if (!resumenRenderMarkdown() && retries > 0) {
+                setTimeout(function() {
+                    resumenDispatchMarkdown(retries - 1);
+                }, 100);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            resumenDispatchMarkdown(30);
+        });
+        window.addEventListener('load', function() {
+            resumenDispatchMarkdown(30);
+        });
+        window.addEventListener('neutralFetchCompleted', function() {
+            resumenDispatchMarkdown(30);
+        });
+    </script>
+:}
+
 {:snip; resumen:urls-buttons >>
     {:snip; resumen:btn-text-muted:{:;local::resumen_name:} >>
         text-muted border-dark
@@ -63,33 +96,6 @@
                 <div class="ai-summary-content" data-markdown>{:;local::resumen_ai_summary:}</div>
             </div>
         </div>
-        <script nonce="{:;CSP_NONCE:}">
-            (function() {
-                function renderMarkdown() {
-                    var el = document.querySelector('[data-markdown]');
-                    if (el && window.marked) {
-                        el.innerHTML = window.marked.parse(el.textContent);
-                    }
-                }
-                if (window.marked) {
-                    renderMarkdown();
-                } else {
-                    document.addEventListener('DOMContentLoaded', function() {
-                        if (window.marked) {
-                            renderMarkdown();
-                        } else {
-                            setTimeout(function checkMarked() {
-                                if (window.marked) {
-                                    renderMarkdown();
-                                } else {
-                                    setTimeout(checkMarked, 100);
-                                }
-                            }, 100);
-                        }
-                    });
-                }
-            })();
-        </script>
     :}
 :}
 
