@@ -39,6 +39,8 @@ class Config: # pylint: disable=too-few-public-methods
     SECRET_KEY = config.get('SECRET_KEY')
     SITE_DOMAIN = config.get('SITE_DOMAIN')
     SITE_URL = config.get('SITE_URL')
+    APP_BIND_IP = config.get('APP_BIND_IP', 'localhost')
+    APP_BIND_PORT = int(config.get('APP_BIND_PORT', 55000))
     REFERRER_POLICY = (config.get('REFERRER_POLICY') or 'strict-origin-when-cross-origin').strip()
     PERMISSIONS_POLICY = (config.get('PERMISSIONS_POLICY') or '').strip()
     # Comma separated list with wildcard support. Example:

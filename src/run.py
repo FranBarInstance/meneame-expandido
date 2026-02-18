@@ -6,4 +6,8 @@ app = create_app()
 debug_mode = app.debug
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(
+        host=app.config.get('APP_BIND_IP', 'localhost'),
+        port=app.config.get('APP_BIND_PORT', 55000),
+        debug=False
+    )

@@ -72,7 +72,10 @@ source .venv/bin/activate
 python src/run.py
 ```
 
-La aplicación estará disponible por defecto en `http://localhost:5000`.
+La aplicación estará disponible por defecto en `http://localhost:55000`.
+
+> [!TIP]
+> Puedes cambiar la dirección IP y el puerto de escucha editando las variables `APP_BIND_IP` y `APP_BIND_PORT` en el archivo `config/.env`.
 
 ---
 *Desarrollado con pasión por la comunidad de Menéame Expandido.*

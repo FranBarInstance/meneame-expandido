@@ -78,6 +78,8 @@ To keep debug active in development, run `touch` periodically before `DEBUG_EXPI
 | `SITE_URL` | Canonical fallback URL. | `http://localhost` |
 | `ALLOWED_HOSTS` | Allowed request hosts, comma separated, wildcard supported. | `SITE_DOMAIN` |
 | `TRUSTED_PROXY_CIDRS` | Trusted proxy IP/CIDR list for client IP extraction. | empty |
+| `APP_BIND_IP` | IP address the application will bind to. | `localhost` |
+| `APP_BIND_PORT` | Port the application will bind to. | `55000` |
 
 Example:
 
