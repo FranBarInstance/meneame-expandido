@@ -108,8 +108,36 @@ Crea `src/component/cmp_6000_resumen_expanse/custom.json`:
 
 ---
 
+## 4. Desarrollo de Nuevas Funcionalidades con IA
+
+Expanse está diseñado para ser expandido mediante agentes de IA. Para pedirle a la IA (como Cursor, Windsurf, o asistentes similares) que cree un nuevo componente, debes proporcionarle un prompt estructurado que le dé contexto sobre la arquitectura de Neutral TS y los recursos disponibles.
+
+### Ejemplo de Prompt para la IA
+
+Puedes usar un archivo `agent.md` en la carpeta del componente que quieres crear como referencia para el prompt. Un ejemplo efectivo sería:
+
+> "Tu tarea es crear el componente `src/component/nombre_del_componente`, que debe [descripción de la funcionalidad].
+>
+> El manifest se encuentra en `src/component/nombre_del_componente/manifest.json`.
+>
+> Para realizar esta tarea, consulta:
+> - `.agent/skills/manage-component/SKILL.md`
+> - `.agent/skills/manage-neutral-templates/SKILL.md`
+> - `docs/component.md`
+> - `src/component/cmp_6000_resumen_expanse/*` (como ejemplo de componente dinámico)
+>
+> Utiliza `from ai_backend_0yt2sa import AIManager` si necesitas acceder a modelos de IA.
+> Define las rutas dinámicamente si es necesario siguiendo el patrón de otros componentes."
+
+### Recomendaciones para el Prompt:
+1. **Referencia a las Skills**: Indica siempre las rutas a `.agent/skills/` para que la IA sepa qué estándares seguir.
+2. **Usa Ejemplos**: Menciona un componente existente similar para que la IA pueda copiar patrones de diseño y estructura.
+3. **Contexto de Datos**: Si el componente depende de una API o servicio externo (como RSS), especifica qué librerías usar (ej. `fastfeedparser`).
+
+---
+
 ## Consideraciones Generales
 
-1. **Reinicio**: Tras crear o modificar un `custom.json`, es recomendable reiniciar el servidor Flask para asegurar que los cambios se cargan correctamente.
+1. **Reinicio**: Tras crear o modificar un `custom.json` o añadir un nuevo componente, es recomendable reiniciar el servidor Flask para asegurar que los cambios se cargan correctamente.
 2. **Seguridad**: El archivo `custom.json` suele estar incluido en `.gitignore` para evitar subir tus claves de API al repositorio. Comprueba siempre esto antes de hacer un commit.
 3. **Persistencia**: Si usas perfiles de IA guardados en el navegador (cookies), estos podrían tener prioridad sobre la configuración estática del `custom.json` en algunos componentes interactivos.

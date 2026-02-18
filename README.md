@@ -2,6 +2,9 @@
 
 **Expanse** es una aplicación de escritorio en desarrollo diseñada para explorar, informar y expandir el ecosistema no oficial que surge del agregador original Menéame, conocido como **Menéame Expandido**.
 
+> [!IMPORTANT]
+> 📘 **[Guía de configuración y personalización (IA, Chat, Resúmenes)](docs/expanse.md)**
+
 ## ¿Qué es el Menéame Expandido?
 
 El concepto de **Menéame Expandido** describe el fenómeno orgánico de comunidades, clones, agregadores independientes y canales de Telegram que operan fuera del dominio oficial. Este proyecto, bajo el nombre de **Expanse**, busca ofrecer una plataforma para visualizar este universo paralelo, integrando herramientas modernas y capacidades avanzadas.
