@@ -4,7 +4,7 @@
             "current": {
                 "theme":  {
                     "theme": "flatly",
-                    "color": "tertiary",
+                    "color": "primary",
                     "class": {
                         "container": "container p-0 p-md-2",
                         "body_main": "",
@@ -18,7 +18,7 @@
                         "flatly"
                     ],
                     "allow_colors": [
-                        "tertiary"
+                        "primary"
                     ],
                     "carousel": [
                         ""

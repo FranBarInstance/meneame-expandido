@@ -55,40 +55,22 @@
             }
         },
         "data": {
-            "drawer": {
-                "menu": {
-                    "session:": {
-                        "ai-tab": {
-                            "name": "AI Chat",
-                            "tabs": "ai-tab",
-                            "icon": "x-icon-agent"
-                        }
-                    },
-                    "session:true": {
-                        "ai-tab": {
-                            "name": "AI Chat",
-                            "tabs": "ai-tab",
-                            "icon": "x-icon-agent"
-                        }
-                    }
-                }
-            },
             "menu": {
                 "session:": {
-                    "ai-tab": {
+                    "main": {
                         "aichat": {
                             "text": "AI Chat",
                             "link": "[:;data->aichat_0yt2sa->manifest->route:]",
-                            "icon": "x-icon-agent"
+                            "icon": "x-icon-brain"
                         }
                     }
                 },
                 "session:true": {
-                    "ai-tab": {
+                    "main": {
                         "aichat": {
                             "text": "AI Chat",
                             "link": "[:;data->aichat_0yt2sa->manifest->route:]",
-                            "icon": "x-icon-agent"
+                            "icon": "x-icon-brain"
                         }
                     }
                 }

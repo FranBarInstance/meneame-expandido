@@ -70,6 +70,13 @@
             },
             "menu": {
                 "session:": {
+                    "main": {
+                        "root": {
+                            "text": "Resumen IA de URLs",
+                            "link": "[:;data->resumen_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-agent"
+                        }
+                    },
                     "resumen": {
                         "root": {
                             "text": "Resumen IA de URLs",
@@ -79,6 +86,13 @@
                     }
                 },
                 "session:true": {
+                    "main": {
+                        "root": {
+                            "text": "Resumen IA de URLs",
+                            "link": "[:;data->resumen_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-agent"
+                        }
+                    },
                     "resumen": {
                         "root": {
                             "text": "Resumen IA de URLs",

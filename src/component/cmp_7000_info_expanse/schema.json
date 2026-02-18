@@ -56,6 +56,11 @@
                             "text": "Expandido",
                             "link": "[:;data->info_0yt2sa->manifest->route:]/expandido",
                             "icon": "x-icon-web"
+                        },
+                        "help": {
+                            "text": "Ayuda",
+                            "link": "[:;data->info_0yt2sa->manifest->route:]/help",
+                            "icon": "x-icon-help"
                         }
                     }
                 },
@@ -70,6 +75,11 @@
                             "text": "Expandido",
                             "link": "[:;data->info_0yt2sa->manifest->route:]/expandido",
                             "icon": "x-icon-web"
+                        },
+                        "help": {
+                            "text": "Ayuda",
+                            "link": "[:;data->info_0yt2sa->manifest->route:]/help",
+                            "icon": "x-icon-help"
                         }
                     }
                 }

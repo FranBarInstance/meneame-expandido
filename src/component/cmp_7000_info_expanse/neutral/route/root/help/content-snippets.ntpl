@@ -1,0 +1,106 @@
+{:data; {:flg; require :} >> #/data.json :}
+
+{:snip; current:template:body-main-content >>
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h3>{:trans; {:;local::current->route->h1:} :}</h3>
+                        <p class="lead text-muted">
+                            {:trans; Expanse es una aplicación modular construida sobre Neutral TS. Gran parte de su potencia reside en la integración con Inteligencia Artificial. :}
+                        </p>
+                        <div class="alert alert-warning border-start border-4 border-warning">
+                            <strong>{:trans; Regla de Oro :}:</strong> {:trans; Nunca modifiques manifest.json o schema.json directamente. Crea siempre un custom.json en la raíz del componente. :}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1. AI Backend -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">1. {:trans; Configuración de Modelos de IA :} (<code>cmp_2000_ai_backend</code>)</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>{:trans; Gestiona las conexiones con los proveedores de IA. Crea <code>src/component/cmp_2000_ai_backend/custom.json</code>: :}</p>
+                        <pre class="bg-dark text-light p-3 rounded"><code>{
+    "manifest": {
+        "config": {
+            "profiles": {
+                "mi_openai": {
+                    "openai": { "enabled": true, "api_key": "...", "model": "gpt-4o" }
+                },
+                "mi_ollama": {
+                    "ollama": { "enabled": true, "base_url": "...", "model": "llama3.1" }
+                }
+            }
+        }
+    }
+}</code></pre>
+                        <h5>{:trans; Proveedores soportados :}:</h5>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item"><strong>openai</strong>: {:trans; Requiere <code>api_key</code>. :}</li>
+                            <li class="list-group-item"><strong>anthropic</strong>: {:trans; Requiere <code>api_key</code>. :}</li>
+                            <li class="list-group-item"><strong>google</strong>: {:trans; Requiere <code>api_key</code> (Gemini). :}</li>
+                            <li class="list-group-item"><strong>ollama</strong>: {:trans; Requiere <code>base_url</code> y <code>model</code>. :}/li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. AI Chat -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h4 class="mb-0">2. {:trans; Configuración del Chat de IA :} (<code>cmp_6000_aichat</code>)</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>{:trans; Configura qué perfil usar por defecto y añade "prompts" predefinidos en <code>src/component/cmp_6000_aichat/custom.json</code>: :}</p>
+                        <pre class="bg-dark text-light p-3 rounded"><code>{
+    "manifest": {
+        "config": {
+            "default_profile": "mi_ollama",
+            "prompts": [
+                { "id": "code", "name": "Programador", "prompt": "Eres un experto..." }
+            ]
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- 3. Resúmenes -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0">3. {:trans; Configuración de Resúmenes :} (<code>cmp_6000_resumen_expanse</code>)</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>{:trans; Personaliza las fuentes de noticias y el comportamiento en <code>src/component/cmp_6000_resumen_expanse/custom.json</code>: :}</p>
+                        <pre class="bg-dark text-light p-3 rounded"><code>{
+    "manifest": {
+        "config": {
+            "default_profile": "mi_openai",
+            "cache_seconds": 600,
+            "resumen_urls": {
+                "Mis Noticias": "https://url-del-rss.com/feed"
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Consideraciones -->
+                <div class="card shadow-sm mb-4 border-info">
+                    <div class="card-body">
+                        <h4>{:trans; Consideraciones Generales :}</h4>
+                        <ol>
+                            <li><strong>{:trans; Reinicio :}:</strong> {:trans; Reinicia el servidor Flask tras modificar un <code>custom.json</code>. :}</li>
+                            <li><strong>{:trans; Seguridad :}:</strong> {:trans; El archivo <code>custom.json</code> está en <code>.gitignore</code> por defecto. :}</li>
+                            <li><strong>{:trans; Persistencia :}:</strong> {:trans; Las cookies del navegador pueden tener prioridad sobre esta configuración. :}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+:}
+{:^;:}
