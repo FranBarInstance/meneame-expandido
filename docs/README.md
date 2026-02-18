@@ -25,4 +25,5 @@ The following documents provide detailed information about the system:
 - **[dispatcher.md](dispatcher.md)**: Documentation for the **Dispatcher** system.
 - **[ajax-neutral-requests.md](ajax-neutral-requests.md)**: Integration notes for AJAX requests and `Requested-With-Ajax`, including behavior when using Neutral fetch vs custom JavaScript.
 - **[translation-component.md](translation-component.md)**: Translation workflow for components, including `{:trans; ... :}` best practices, locale file strategy, and the `translate-component` skill.
+- **[expanse.md](expanse.md)**: **Guía de configuración de Expanse.** Explicación sobre cómo configurar modelos de IA, chat y resúmenes mediante `custom.json`.
 - **[security-csp.md](security-csp.md)**: Security guide for CSP, security headers, host allow-list validation, and trusted proxy boundaries.

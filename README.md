@@ -32,6 +32,8 @@ Actualmente, la aplicación se encuentra en **fase de desarrollo activo**.
 *   **Base del Proyecto**: [Neutral TS Starter Py](https://github.com/FranBarInstance/neutral-starter-py)
 *   **Motor de Plantillas**: [Neutral TS](https://github.com/FranBarInstance/neutralts)
 *   **Documentación de Plantillas**: [Neutral TS Docs](https://franbarinstance.github.io/neutralts-docs/docs/neutralts/doc/)
+*   **Configuración de Expanse**: [Guía de configuración (IA, Chat, Resúmenes)](docs/expanse.md)
+*   **Índice de Documentación**: [Documentación detallada](docs/README.md)
 
 ## Guía de Inicio Local
 

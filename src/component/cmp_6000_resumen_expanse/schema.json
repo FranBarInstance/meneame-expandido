@@ -14,7 +14,8 @@
                     "Error generating summary": "Error al generar el resumen",
                     "AI Summary": "Resumen IA",
                     "Generating summary...": "Generando resumen...",
-                    "Summary of": "Resumen de"
+                    "Summary of": "Resumen de",
+                    "You need to sign in to use AI Summary.": "Necesitas iniciar sesión para usar Resumen IA."
                 },
                 "fr": {
                     "Resumen IA de URLs": "Résumé IA des URLs",
@@ -28,7 +29,8 @@
                     "Error generating summary": "Erreur lors de la génération du résumé",
                     "AI Summary": "Résumé IA",
                     "Generating summary...": "Génération du résumé...",
-                    "Summary of": "Résumé de"
+                    "Summary of": "Résumé de",
+                    "You need to sign in to use AI Summary.": "Vous devez vous connecter pour utiliser Résumé IA."
                 },
                 "de": {
                     "Resumen IA de URLs": "KI-Zusammenfassung von URLs",
@@ -42,7 +44,8 @@
                     "Error generating summary": "Fehler beim Generieren der Zusammenfassung",
                     "AI Summary": "KI-Zusammenfassung",
                     "Generating summary...": "Zusammenfassung wird erstellt...",
-                    "Summary of": "Zusammenfassung von"
+                    "Summary of": "Zusammenfassung von",
+                    "You need to sign in to use AI Summary.": "Sie müssen sich anmelden, um die KI-Zusammenfassung zu nutzen."
                 }
             }
         },

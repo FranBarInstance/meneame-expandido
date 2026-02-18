@@ -1,11 +1,21 @@
 """Resumen IA routes module."""
 
-from flask import Response, request
+from flask import Response, jsonify, request
 
 from app.extensions import require_header_set
 
 from . import bp  # pylint: disable=no-name-in-module
 from .dispatcher_resumen import Dispatcher, DispatcherResumen
+
+
+def _require_session(dispatch: DispatcherResumen):
+    """Return unauthorized response when session is not active."""
+    if dispatch.schema_data["HAS_SESSION"] is None:
+        return jsonify({
+            "success": False,
+            "error": "Authentication required"
+        }), 401
+    return None
 
 
 @bp.route('/', defaults={'route': ''}, methods=['GET'])
@@ -28,6 +38,11 @@ def resumen_ajax() -> Response:
 def resumen_ajax_name(route, resumen_name) -> Response:
     """Handle ajax with resumen name."""
     dispatch = DispatcherResumen(request, route, bp.neutral_route)
+
+    unauthorized = _require_session(dispatch)
+    if unauthorized:
+        return unauthorized
+
     dispatch.schema_data['dispatch_result'] = dispatch.set_resumen_name(bp.schema, resumen_name)
 
     if not dispatch.schema_data['dispatch_result']:

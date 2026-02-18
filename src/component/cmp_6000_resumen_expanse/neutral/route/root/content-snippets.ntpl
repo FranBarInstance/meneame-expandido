@@ -18,12 +18,21 @@
 :}
 
 {:snip; current:template:body-main-content >>
-    <div class="{:;local::current->theme->class->container:}">
-        {:snip; resumen:urls-buttons :}
-        <div class="form-text text-center alert alert-dismissible alert-light py-3 mt-3">
-            <span class="{:;local::x-icon-ai:}"></span> {:trans; Selecciona una fuente para generar un resumen con IA :}
+    {:bool; HAS_SESSION >>
+        <div class="{:;local::current->theme->class->container:}">
+            {:snip; resumen:urls-buttons :}
+            <div class="form-text text-center alert alert-dismissible alert-light py-3 mt-3">
+                <span class="{:;local::x-icon-ai:}"></span> {:trans; Selecciona una fuente para generar un resumen con IA :}
+            </div>
         </div>
-    </div>
+    :}{:else;
+        <div class="{:;local::current->theme->class->container:} pt-3">
+            <div class="alert alert-info mb-3" role="alert">
+                {:trans; You need to sign in to use AI Summary. :}
+            </div>
+            {:snip; sign:sign-in-ajax-form :}
+        </div>
+    :}
 :}
 
 {:^;:}

@@ -12,9 +12,18 @@
 :}
 
 {:snip; current:template:body-main-content >>
-    <div class="{:;local::current->theme->class->container:}">
-        {:snip; resumen:play :}
-    </div>
+    {:bool; HAS_SESSION >>
+        <div class="{:;local::current->theme->class->container:}">
+            {:snip; resumen:play :}
+        </div>
+    :}{:else;
+        <div class="{:;local::current->theme->class->container:} pt-3">
+            <div class="alert alert-info mb-3" role="alert">
+                {:trans; You need to sign in to use AI Summary. :}
+            </div>
+            {:snip; sign:sign-in-ajax-form :}
+        </div>
+    :}
 :}
 
 {:^;:}
