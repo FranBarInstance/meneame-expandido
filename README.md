@@ -27,7 +27,7 @@ De hecho, ya lo ha hecho, el componente `cmp_6000_resumen_expanse` lo ha creado 
 
 Actualmente, la aplicación se encuentra en **fase de desarrollo activo**.
 
-> [!WARNING]
+> [!AVISO]
 > **No ejecutar en servidores**: Esta aplicación está diseñada exclusivamente para uso en **escritorio/local**. Actualmente **no posee un sistema de detección de abusos** para los servicios de IA. Exponerla en un servidor público podría resultar en un consumo descontrolado de tokens. Este problema se abordará en futuras actualizaciones.
 
 ## Referencias y Enlaces
