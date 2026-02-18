@@ -127,7 +127,7 @@ Un ejemplo efectivo sería:
 >
 > Define las rutas dinámicamente si es necesario siguiendo el patrón de otros componentes.
 
-El componente `cmp_6000_resumen_expanse` lo ha creado la IA leyendo esta documentación y las instrucciones en [agent.md](src/component/cmp_6000_resumen_expanse/agent.md)
+El componente `cmp_6000_resumen_expanse` lo ha creado la IA leyendo esta documentación y las instrucciones en [agent.md](../src/component/cmp_6000_resumen_expanse/agent.md)
 
 ### Recomendaciones para el Prompt:
 1. **Referencia a las Skills**: Indica siempre las rutas a `.agent/skills/` para que la IA sepa qué estándares seguir.
