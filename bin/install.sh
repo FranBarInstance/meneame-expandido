@@ -136,6 +136,69 @@ extract_env_value() {
   printf "%s" "$value"
 }
 
+create_linux_launcher() {
+  install_dir="$1"
+  app_url="$2"
+  launcher_path="${install_dir}/bin/launch-expanse-linux.sh"
+  desktop_dir="${HOME}/.local/share/applications"
+  desktop_file="${desktop_dir}/expanse.desktop"
+  icon_file="${install_dir}/public/img/logo.png"
+
+  mkdir -p "${install_dir}/bin"
+  cat > "$launcher_path" <<EOF
+#!/usr/bin/env sh
+set -eu
+cd "$install_dir"
+. .venv/bin/activate
+python src/run.py &
+APP_PID=\$!
+sleep 2
+if command -v xdg-open >/dev/null 2>&1; then
+  xdg-open "$app_url" >/dev/null 2>&1 || true
+fi
+wait "\$APP_PID"
+EOF
+  chmod +x "$launcher_path"
+
+  mkdir -p "$desktop_dir"
+  {
+    printf "%s\n" "[Desktop Entry]"
+    printf "%s\n" "Type=Application"
+    printf "%s\n" "Name=Expanse"
+    printf "%s\n" "Comment=Menéame Expandido"
+    printf "%s\n" "Exec=${launcher_path}"
+    if [ -f "$icon_file" ]; then
+      printf "%s\n" "Icon=${icon_file}"
+    fi
+    printf "%s\n" "Terminal=true"
+    printf "%s\n" "Categories=Network;News;"
+  } > "$desktop_file"
+
+  say "Lanzador creado: ${launcher_path}"
+  say "Acceso de aplicaciones: ${desktop_file}"
+}
+
+create_linux_desktop_icon() {
+  desktop_dir="${HOME}/.local/share/applications"
+  source_desktop_file="${desktop_dir}/expanse.desktop"
+  user_desktop_dir="${HOME}/Desktop"
+  user_desktop_file="${user_desktop_dir}/Expanse.desktop"
+
+  if [ ! -f "$source_desktop_file" ]; then
+    warn "No existe el lanzador de aplicaciones para copiar al escritorio."
+    return 0
+  fi
+
+  if [ ! -d "$user_desktop_dir" ]; then
+    warn "No existe directorio de escritorio: ${user_desktop_dir}"
+    return 0
+  fi
+
+  cp "$source_desktop_file" "$user_desktop_file"
+  chmod +x "$user_desktop_file"
+  say "Icono de escritorio creado: ${user_desktop_file}"
+}
+
 install_from_tag() {
   target_dir="$1"
   tag="$2"
@@ -244,6 +307,13 @@ main() {
     [ -n "$app_ip" ] || app_ip="localhost"
     [ -n "$app_port" ] || app_port="55000"
     app_url="http://${app_ip}:${app_port}"
+
+    if prompt_yes_no "¿Quieres crear lanzador de aplicación?" "y"; then
+      create_linux_launcher "$install_dir" "$app_url"
+      if prompt_yes_no "¿Quieres crear icono en el escritorio?" "y"; then
+        create_linux_desktop_icon
+      fi
+    fi
 
     say ""
     say "Instalación completada."

@@ -126,6 +126,64 @@ function Install-FromTag {
     Remove-Item -LiteralPath $tmpDir -Recurse -Force
 }
 
+function New-WindowsLauncher {
+    param(
+        [string]$InstallDir,
+        [string]$AppUrl
+    )
+
+    $launcherPath = Join-Path $InstallDir "bin\launch-expanse-windows.ps1"
+
+    New-Item -ItemType Directory -Path (Join-Path $InstallDir "bin") -Force | Out-Null
+
+    $launcherContent = @"
+Set-StrictMode -Version Latest
+`$ErrorActionPreference = "Stop"
+`$InstallDir = "$InstallDir"
+`$AppUrl = "$AppUrl"
+`$venvPython = Join-Path `$InstallDir ".venv\Scripts\python.exe"
+if (-not (Test-Path -LiteralPath `$venvPython)) {
+    throw "No se encontró `$venvPython"
+}
+`$process = Start-Process -FilePath `$venvPython -ArgumentList "src/run.py" -WorkingDirectory `$InstallDir -PassThru
+Start-Sleep -Seconds 2
+Start-Process `$AppUrl | Out-Null
+`$process | Wait-Process
+"@
+    Set-Content -LiteralPath $launcherPath -Value $launcherContent -Encoding UTF8
+
+    Say "Lanzador creado: $launcherPath"
+    return $launcherPath
+}
+
+function New-WindowsDesktopShortcut {
+    param(
+        [string]$InstallDir,
+        [string]$LauncherPath
+    )
+
+    if (-not (Test-Path -LiteralPath $LauncherPath)) {
+        Warn "No existe el lanzador para crear el acceso directo: $LauncherPath"
+        return
+    }
+
+    $desktopDir = [Environment]::GetFolderPath("Desktop")
+    $shortcutPath = Join-Path $desktopDir "Expanse.lnk"
+    $iconPath = Join-Path $InstallDir "public\favicon.ico"
+
+    $wsh = New-Object -ComObject WScript.Shell
+    $shortcut = $wsh.CreateShortcut($shortcutPath)
+    $shortcut.TargetPath = "powershell.exe"
+    $shortcut.Arguments = "-ExecutionPolicy Bypass -File `"$LauncherPath`""
+    $shortcut.WorkingDirectory = $InstallDir
+    if (Test-Path -LiteralPath $iconPath) {
+        $shortcut.IconLocation = $iconPath
+    }
+    $shortcut.Save()
+
+    Say "Acceso directo: $shortcutPath"
+}
+
 try {
     $latestTag = Get-LatestTag
     Say "Último tag detectado: $latestTag"
@@ -217,6 +275,13 @@ try {
         if ([string]::IsNullOrWhiteSpace($appPort)) { $appPort = "55000" }
 
         $appUrl = "http://$appIp`:$appPort"
+        if (Prompt-YesNo "¿Quieres crear lanzador de aplicación?" $true) {
+            $launcherPath = New-WindowsLauncher -InstallDir $installDir -AppUrl $appUrl
+            if (Prompt-YesNo "¿Quieres crear icono en el escritorio?" $true) {
+                New-WindowsDesktopShortcut -InstallDir $installDir -LauncherPath $launcherPath
+            }
+        }
+
         Say ""
         Say "Instalación completada."
         Say "Aplicación disponible en: $appUrl"

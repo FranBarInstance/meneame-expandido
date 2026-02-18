@@ -115,6 +115,48 @@ extract_env_value() {
   printf "%s" "$value"
 }
 
+create_mac_launcher() {
+  install_dir="$1"
+  app_url="$2"
+  launcher_path="${install_dir}/bin/launch-expanse-mac.command"
+
+  mkdir -p "${install_dir}/bin"
+  cat > "$launcher_path" <<EOF
+#!/usr/bin/env sh
+set -eu
+cd "$install_dir"
+. .venv/bin/activate
+python src/run.py &
+APP_PID=\$!
+sleep 2
+open "$app_url" >/dev/null 2>&1 || true
+wait "\$APP_PID"
+EOF
+  chmod +x "$launcher_path"
+
+  say "Lanzador creado: ${launcher_path}"
+}
+
+create_mac_desktop_icon() {
+  install_dir="$1"
+  launcher_path="${install_dir}/bin/launch-expanse-mac.command"
+  desktop_path="${HOME}/Desktop/Expanse.command"
+
+  if [ ! -f "$launcher_path" ]; then
+    warn "No existe el lanzador para copiar al escritorio."
+    return 0
+  fi
+
+  if [ ! -d "${HOME}/Desktop" ]; then
+    warn "No existe directorio de escritorio: ${HOME}/Desktop"
+    return 0
+  fi
+
+  cp "$launcher_path" "$desktop_path"
+  chmod +x "$desktop_path"
+  say "Icono/lanzador en escritorio: ${desktop_path}"
+}
+
 install_from_tag() {
   target_dir="$1"
   tag="$2"
@@ -226,6 +268,13 @@ main() {
     [ -n "$app_ip" ] || app_ip="localhost"
     [ -n "$app_port" ] || app_port="55000"
     app_url="http://${app_ip}:${app_port}"
+
+    if prompt_yes_no "¿Quieres crear lanzador de aplicación?" "y"; then
+      create_mac_launcher "$install_dir" "$app_url"
+      if prompt_yes_no "¿Quieres crear icono en el escritorio?" "y"; then
+        create_mac_desktop_icon "$install_dir"
+      fi
+    fi
 
     say ""
     say "Instalación completada."
