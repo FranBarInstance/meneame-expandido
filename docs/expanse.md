@@ -37,7 +37,7 @@ Estos instaladores:
 - Preguntan el directorio de instalación.
 - Configuran `.venv` e instalan dependencias.
 - Generan `config/.env` y un `SECRET_KEY` aleatorio.
-- Crean un usuario inicial (con contraseña mínima de 8 caracteres).
+- Crean un usuario inicial (con contraseña mínima de 9 caracteres).
 - Preguntan si quieres ejecutar la app al finalizar y muestran la URL final.
 
 #### Linux / macOS

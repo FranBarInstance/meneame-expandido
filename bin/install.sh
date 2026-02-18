@@ -317,8 +317,8 @@ main() {
       user_email="$(prompt "Email del usuario" "email@example.com")"
     done
     user_password="$(prompt "Password del usuario" "")"
-    while [ -z "$user_password" ] || [ "${#user_password}" -lt 8 ]; do
-      warn "La contraseña debe tener al menos 8 caracteres."
+    while [ -z "$user_password" ] || [ "${#user_password}" -lt 9 ]; do
+      warn "La contraseña debe tener al menos 9 caracteres."
       user_password="$(prompt "Password del usuario" "")"
     done
     user_birthdate="$(prompt "Fecha de nacimiento ISO (YYYY-MM-DD)" "1990-01-01")"

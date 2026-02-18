@@ -252,8 +252,8 @@ try {
         }
 
         $userPassword = Prompt-Value "Password del usuario" ""
-        while ([string]::IsNullOrWhiteSpace($userPassword) -or $userPassword.Length -lt 8) {
-            Warn "La contraseña debe tener al menos 8 caracteres."
+        while ([string]::IsNullOrWhiteSpace($userPassword) -or $userPassword.Length -lt 9) {
+            Warn "La contraseña debe tener al menos 9 caracteres."
             $userPassword = Prompt-Value "Password del usuario" ""
         }
 
