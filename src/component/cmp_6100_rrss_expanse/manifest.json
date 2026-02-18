@@ -6,7 +6,24 @@
     "route": "/rrss",
     "config": {
         "cache_seconds": 300,
-        "rsss_default": "",
-        "rrss_urls": {}
+        "rsss_default": "Renegados",
+        "rrss_urls": {
+            "Renegados": "https://repostea.renegados.es/rss/published",
+            "Renegados cola": "https://repostea.renegados.es/rss/queued",
+            "Meneame": "https://www.meneame.net/rss",
+            "Meneame cola": "https://www.meneame.net/rss?status=queued",
+            "Meneame comentarios": "https://meneame.net/comments_rss",
+            "Nótame": "https://meneame.net/sneakme_rss",
+            "Killbait": "https://killbaitnews.github.io/rssfeeds/es.rss",
+            "Mediatize": "https://www.mediatize.info/rss",
+            "Tardigram": "https://tardigram.com/rss",
+            "BBC": "https://feeds.bbci.co.uk/news/rss.xml",
+            "TechCrunch": "https://techcrunch.com/feed/",
+            "Hackaday": "https://hackaday.com/feed/",
+            "CNET": "https://www.cnet.com/rss/news/",
+            "NASA": "https://nasawatch.com/feed/",
+            "The Register": "https://www.theregister.com/headlines.rss",
+            "Ars Technica": "https://arstechnica.com/feed/"
+        }
     }
 }
