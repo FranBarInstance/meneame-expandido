@@ -6,6 +6,76 @@ Expanse es una aplicación modular construida sobre Neutral TS. Gran parte de su
 
 ---
 
+## Guía de Inicio Local
+
+### 1. Requisitos Previos
+
+*   Python 3.10 o superior.
+*   Entorno virtual (recomendado).
+
+### 2. Configuración del Entorno
+
+#### Linux / macOS
+```bash
+# Crear entorno virtual
+python3 -m venv .venv
+
+# Activar entorno
+source .venv/bin/activate
+
+# Instalar dependencias
+pip install -r requirements.txt
+```
+
+#### Windows
+```powershell
+# Crear entorno virtual
+python -m venv .venv
+
+# Activar entorno (PowerShell)
+.\.venv\Scripts\Activate.ps1
+# O en CMD:
+# .\.venv\Scripts\activate.bat
+
+# Instalar dependencias
+pip install -r requirements.txt
+```
+
+### 3. Configuración de Variables
+
+#### Linux / macOS
+```bash
+cp config/.env.example config/.env
+```
+
+#### Windows
+```powershell
+copy config\.env.example config\.env
+```
+
+Copia el archivo de ejemplo y configura tu `SECRET_KEY` y las API Keys necesarias para la IA en `config/.env`.
+
+### 4. Ejecución
+
+Para iniciar la aplicación en modo desarrollo:
+
+**Linux / macOS:**
+```bash
+source .venv/bin/activate
+python3 src/run.py
+```
+
+**Windows:**
+```powershell
+# En PowerShell
+.\.venv\Scripts\Activate.ps1
+python src/run.py
+```
+
+La aplicación estará disponible por defecto en `http://localhost:55000`.
+
+---
+
 ## 1. Configuración de Modelos de IA (`cmp_2000_ai_backend`)
 
 Este componente es el "cerebro" que gestiona las conexiones con los proveedores de IA.
