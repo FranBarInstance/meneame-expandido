@@ -23,6 +23,24 @@
                     }
                 }
             },
+            "menu": {
+                "session:": {
+                    "main": {
+                        "home": {},
+                        "rrss": {},
+                        "resumen": {},
+                        "aichat": {}
+                    }
+                },
+                "session:true": {
+                    "main": {
+                        "home": {},
+                        "rrss": {},
+                        "resumen": {},
+                        "aichat": {}
+                    }
+                }
+            },
             "navbar": {
                 "menu": {
                     "session:": {
