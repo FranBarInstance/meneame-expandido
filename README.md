@@ -2,7 +2,6 @@
 
 **Expanse** es una aplicación para escritorio en desarrollo diseñada para explorar, informar y expandir el ecosistema no oficial que surge del agregador original Menéame, conocido como **Menéame Expandido**.
 
-> [!GUÍA]
 > 📘 **[Guía de configuración y personalización (IA, Chat, Resúmenes)](docs/expanse.md)**
 
 ## ¿Qué es el Menéame Expandido?
@@ -27,7 +26,6 @@ De hecho, ya lo ha hecho, el componente `cmp_6000_resumen_expanse` lo ha creado 
 
 Actualmente, la aplicación se encuentra en **fase de desarrollo activo**.
 
-> [!AVISO]
 > **No ejecutar en servidores**: Esta aplicación está diseñada exclusivamente para uso en **escritorio/local**. Actualmente **no posee un sistema de detección de abusos** para los servicios de IA. Exponerla en un servidor público podría resultar en un consumo descontrolado de tokens. Este problema se abordará en futuras actualizaciones.
 
 ## Referencias y Enlaces
