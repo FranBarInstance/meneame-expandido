@@ -137,20 +137,40 @@ EOF
   say "Lanzador creado: ${launcher_path}"
 }
 
+get_mac_desktop_dir() {
+  if command -v osascript >/dev/null 2>&1; then
+    d="$(osascript -e 'POSIX path of (path to desktop folder)' 2>/dev/null | tr -d '\r\n')"
+    d="${d%/}"
+    if [ -n "$d" ] && [ -d "$d" ]; then
+      printf "%s" "$d"
+      return 0
+    fi
+  fi
+
+  if [ -d "${HOME}/Desktop" ]; then
+    printf "%s" "${HOME}/Desktop"
+    return 0
+  fi
+  return 1
+}
+
 create_mac_desktop_icon() {
   install_dir="$1"
   launcher_path="${install_dir}/bin/launch-expanse-mac.command"
-  desktop_path="${HOME}/Desktop/Expanse.command"
+  desktop_dir=""
+  desktop_path=""
 
   if [ ! -f "$launcher_path" ]; then
     warn "No existe el lanzador para copiar al escritorio."
     return 0
   fi
 
-  if [ ! -d "${HOME}/Desktop" ]; then
-    warn "No existe directorio de escritorio: ${HOME}/Desktop"
+  desktop_dir="$(get_mac_desktop_dir || true)"
+  if [ -z "$desktop_dir" ] || [ ! -d "$desktop_dir" ]; then
+    warn "No existe directorio de escritorio: ${desktop_dir}"
     return 0
   fi
+  desktop_path="${desktop_dir}/Expanse.command"
 
   cp "$launcher_path" "$desktop_path"
   chmod +x "$desktop_path"

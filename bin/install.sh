@@ -178,10 +178,39 @@ EOF
   say "Acceso de aplicaciones: ${desktop_file}"
 }
 
+get_linux_desktop_dir() {
+  if command -v xdg-user-dir >/dev/null 2>&1; then
+    d="$(xdg-user-dir DESKTOP 2>/dev/null || true)"
+    if [ -n "$d" ] && [ -d "$d" ]; then
+      printf "%s" "$d"
+      return 0
+    fi
+  fi
+
+  if [ -f "${HOME}/.config/user-dirs.dirs" ]; then
+    d="$(sed -n 's/^XDG_DESKTOP_DIR=//p' "${HOME}/.config/user-dirs.dirs" | head -n 1)"
+    d="${d%\"}"
+    d="${d#\"}"
+    case "$d" in
+      '$HOME'/*) d="${HOME}/${d#\$HOME/}" ;;
+    esac
+    if [ -n "$d" ] && [ -d "$d" ]; then
+      printf "%s" "$d"
+      return 0
+    fi
+  fi
+
+  if [ -d "${HOME}/Desktop" ]; then
+    printf "%s" "${HOME}/Desktop"
+    return 0
+  fi
+  return 1
+}
+
 create_linux_desktop_icon() {
   desktop_dir="${HOME}/.local/share/applications"
   source_desktop_file="${desktop_dir}/expanse.desktop"
-  user_desktop_dir="${HOME}/Desktop"
+  user_desktop_dir=""
   user_desktop_file="${user_desktop_dir}/Expanse.desktop"
 
   if [ ! -f "$source_desktop_file" ]; then
@@ -189,10 +218,12 @@ create_linux_desktop_icon() {
     return 0
   fi
 
-  if [ ! -d "$user_desktop_dir" ]; then
+  user_desktop_dir="$(get_linux_desktop_dir || true)"
+  if [ -z "$user_desktop_dir" ] || [ ! -d "$user_desktop_dir" ]; then
     warn "No existe directorio de escritorio: ${user_desktop_dir}"
     return 0
   fi
+  user_desktop_file="${user_desktop_dir}/Expanse.desktop"
 
   cp "$source_desktop_file" "$user_desktop_file"
   chmod +x "$user_desktop_file"
