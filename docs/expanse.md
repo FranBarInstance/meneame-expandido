@@ -74,6 +74,24 @@ python src/run.py
 
 La aplicación estará disponible por defecto en `http://localhost:55000`.
 
+### 5. Creación de Usuario (Obligatorio)
+
+Tras la instalación, **es necesario crear al menos un usuario** para acceder a todas las funcionalidades (algunas requieren inicio de sesión).
+
+**Linux / macOS:**
+```bash
+source .venv/bin/activate
+python3 bin/create_user.py "Tu Nombre" "tu@email.com" "tu_password" "1990-01-01"
+```
+
+**Windows:**
+```powershell
+.\.venv\Scripts\Activate.ps1
+python bin/create_user.py "Tu Nombre" "tu@email.com" "tu_password" "1990-01-01"
+```
+
+Consulta [bin/README.md](../bin/README.md) para más detalles sobre los argumentos del script.
+
 ---
 
 ## 1. Configuración de Modelos de IA (`cmp_2000_ai_backend`)

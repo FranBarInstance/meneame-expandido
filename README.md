@@ -107,6 +107,26 @@ python src/run.py
 
 La aplicación estará disponible por defecto en `http://localhost:55000`.
 
+### 5. Creación de Usuario (Obligatorio)
+
+Tras la instalación y antes de empezar a usar todas las funcionalidades, **debes crear al menos un usuario** en la base de datos. Algunas opciones de la aplicación requieren haber iniciado sesión.
+
+Utiliza el script proporcionado en la carpeta `bin/`:
+
+**Linux / macOS:**
+```bash
+source .venv/bin/activate
+python3 bin/create_user.py "Tu Nombre" "tu@email.com" "tu_password" "1990-01-01"
+```
+
+**Windows:**
+```powershell
+.\.venv\Scripts\Activate.ps1
+python bin/create_user.py "Tu Nombre" "tu@email.com" "tu_password" "1990-01-01"
+```
+
+Para más información sobre los scripts de utilidad, consulta [bin/README.md](bin/README.md).
+
 > [!TIP]
 > Puedes cambiar la dirección IP y el puerto de escucha editando las variables `APP_BIND_IP` y `APP_BIND_PORT` en el archivo `config/.env`.
 

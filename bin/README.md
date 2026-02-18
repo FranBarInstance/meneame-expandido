@@ -23,6 +23,8 @@ En Windows:
 
 Crea un usuario en la base de datos usando la lógica interna del proyecto (`core.user.User.create`).
 
+**Nota importante**: Después de la instalación inicial, **es obligatorio crear al menos un usuario**. Algunas funcionalidades de la aplicación (como el chat de IA o la gestión de perfiles) requieren que inicies sesión para funcionar correctamente.
+
 Uso:
 
 ```bash
