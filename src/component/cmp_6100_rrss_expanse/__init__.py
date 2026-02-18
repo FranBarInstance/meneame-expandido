@@ -31,12 +31,12 @@ def set_menu(route, rrss_urls, component_schema):
     menu = {
         'session:': {
             'rrss': {
-                'root': component_schema['inherit']['data']['menu']['session:']['rrss']['root']
+                'rrss': component_schema['inherit']['data']['menu']['session:']['rrss']['rrss']
             }
         },
         'session:true': {
             'rrss': {
-                'root': component_schema['inherit']['data']['menu']['session:true']['rrss']['root']
+                'rrss': component_schema['inherit']['data']['menu']['session:true']['rrss']['rrss']
             }
         }
     }
