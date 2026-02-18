@@ -3,7 +3,7 @@
 **Expanse** es una aplicación para escritorio en desarrollo diseñada para explorar, informar y expandir el ecosistema no oficial que surge del agregador original Menéame, conocido como **Menéame Expandido**.
 
 > 📘 **[Guía de configuración y personalización (IA, Chat, Resúmenes)](docs/expanse.md)**
-
+>
 > 🖼️ **[Ver Capturas de Pantalla](docs/screenshots.md)**
 
 
@@ -48,12 +48,27 @@ Actualmente, la aplicación se encuentra en **fase de desarrollo activo**.
 
 ### 2. Configuración del Entorno
 
+#### Linux / macOS
 ```bash
+# Crear entorno virtual
+python3 -m venv .venv
+
+# Activar entorno
+source .venv/bin/activate
+
+# Instalar dependencias
+pip install -r requirements.txt
+```
+
+#### Windows
+```powershell
 # Crear entorno virtual
 python -m venv .venv
 
-# Activar entorno (Linux/Mac)
-source .venv/bin/activate
+# Activar entorno (PowerShell)
+.\.venv\Scripts\Activate.ps1
+# O en CMD:
+# .\.venv\Scripts\activate.bat
 
 # Instalar dependencias
 pip install -r requirements.txt
@@ -61,18 +76,32 @@ pip install -r requirements.txt
 
 ### 3. Configuración de Variables
 
-Copia el archivo de ejemplo y configura tu `SECRET_KEY` y las API Keys necesarias para la IA en `config/.env`:
-
+#### Linux / macOS
 ```bash
 cp config/.env.example config/.env
 ```
+
+#### Windows
+```powershell
+copy config\.env.example config\.env
+```
+
+Copia el archivo de ejemplo y configura tu `SECRET_KEY` y las API Keys necesarias para la IA en `config/.env`.
 
 ### 4. Ejecución
 
 Para iniciar la aplicación en modo desarrollo:
 
+**Linux / macOS:**
 ```bash
 source .venv/bin/activate
+python3 src/run.py
+```
+
+**Windows:**
+```powershell
+# En PowerShell
+.\.venv\Scripts\Activate.ps1
 python src/run.py
 ```
 
