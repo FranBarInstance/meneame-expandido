@@ -114,20 +114,20 @@ Expanse está diseñado para ser expandido mediante agentes de IA. Para pedirle 
 
 ### Ejemplo de Prompt para la IA
 
-Puedes usar un archivo `agent.md` en la carpeta del componente que quieres crear como referencia para el prompt. Un ejemplo efectivo sería:
+Un ejemplo efectivo sería:
 
-> "Tu tarea es crear el componente `src/component/nombre_del_componente`, que debe [descripción de la funcionalidad].
+> Tu tarea es crear el componente `nombre_del_componente`, que debe [descripción de la funcionalidad].
 >
-> El manifest se encuentra en `src/component/nombre_del_componente/manifest.json`.
+> Usa la ruta: `/mi-ruta`
 >
 > Para realizar esta tarea, consulta:
 > - `.agent/skills/manage-component/SKILL.md`
 > - `.agent/skills/manage-neutral-templates/SKILL.md`
-> - `docs/component.md`
-> - `src/component/cmp_6000_resumen_expanse/*` (como ejemplo de componente dinámico)
+> - `src/component/cmp_6000_resumen_expanse/*` (como ejemplo de componente dinámico, o cualquier otro)
 >
-> Utiliza `from ai_backend_0yt2sa import AIManager` si necesitas acceder a modelos de IA.
-> Define las rutas dinámicamente si es necesario siguiendo el patrón de otros componentes."
+> Define las rutas dinámicamente si es necesario siguiendo el patrón de otros componentes.
+
+El componente `cmp_6000_resumen_expanse` lo ha creado la IA leyendo esta documentación y las instrucciones en [agent.md](src/component/cmp_6000_resumen_expanse/agent.md)
 
 ### Recomendaciones para el Prompt:
 1. **Referencia a las Skills**: Indica siempre las rutas a `.agent/skills/` para que la IA sepa qué estándares seguir.
