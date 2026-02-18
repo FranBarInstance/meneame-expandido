@@ -1,6 +1,6 @@
 {
     "uuid": "resumen_0yt2sa",
-    "name": "Resumen IA de URLs",
+    "name": "Resumen IA",
     "description": "Genera resúmenes de feeds RSS usando modelos de IA",
     "version": "1.0.0",
     "route": "/resumen",

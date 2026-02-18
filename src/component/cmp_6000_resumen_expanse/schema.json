@@ -3,7 +3,7 @@
         "locale": {
             "trans": {
                 "es": {
-                    "Resumen IA de URLs": "Resumen IA de URLs",
+                    "Resumen IA": "Resumen IA",
                     "Alternate sources": "Fuentes alternativas",
                     "Source": "Fuente",
                     "No publications": "Sin publicaciones",
@@ -18,7 +18,7 @@
                     "You need to sign in to use AI Summary.": "Necesitas iniciar sesión para usar Resumen IA."
                 },
                 "fr": {
-                    "Resumen IA de URLs": "Résumé IA des URLs",
+                    "Resumen IA": "Résumé IA",
                     "Alternate sources": "Sources alternatives",
                     "Source": "Source",
                     "No publications": "Sans publications",
@@ -33,7 +33,7 @@
                     "You need to sign in to use AI Summary.": "Vous devez vous connecter pour utiliser Résumé IA."
                 },
                 "de": {
-                    "Resumen IA de URLs": "KI-Zusammenfassung von URLs",
+                    "Resumen IA": "KI-Zusammenfassung",
                     "Alternate sources": "Alternative Quellen",
                     "Source": "Quelle",
                     "No publications": "Ohne Publikationen",
@@ -72,14 +72,14 @@
                 "session:": {
                     "main": {
                         "resumen": {
-                            "text": "Resumen IA de URLs",
+                            "text": "Resumen IA",
                             "link": "[:;data->resumen_0yt2sa->manifest->route:]",
                             "icon": "x-icon-agent"
                         }
                     },
                     "resumen": {
                         "root": {
-                            "text": "Resumen IA de URLs",
+                            "text": "Resumen IA",
                             "link": "[:;data->resumen_0yt2sa->manifest->route:]",
                             "icon": "x-icon-agent"
                         }
@@ -88,14 +88,14 @@
                 "session:true": {
                     "main": {
                         "resumen": {
-                            "text": "Resumen IA de URLs",
+                            "text": "Resumen IA",
                             "link": "[:;data->resumen_0yt2sa->manifest->route:]",
                             "icon": "x-icon-agent"
                         }
                     },
                     "resumen": {
                         "root": {
-                            "text": "Resumen IA de URLs",
+                            "text": "Resumen IA",
                             "link": "[:;data->resumen_0yt2sa->manifest->route:]",
                             "icon": "x-icon-agent"
                         }
