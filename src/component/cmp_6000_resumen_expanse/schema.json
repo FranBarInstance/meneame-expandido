@@ -71,7 +71,7 @@
             "menu": {
                 "session:": {
                     "main": {
-                        "root": {
+                        "resumen": {
                             "text": "Resumen IA de URLs",
                             "link": "[:;data->resumen_0yt2sa->manifest->route:]",
                             "icon": "x-icon-agent"
@@ -87,7 +87,7 @@
                 },
                 "session:true": {
                     "main": {
-                        "root": {
+                        "resumen": {
                             "text": "Resumen IA de URLs",
                             "link": "[:;data->resumen_0yt2sa->manifest->route:]",
                             "icon": "x-icon-agent"

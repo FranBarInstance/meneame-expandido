@@ -64,11 +64,25 @@
                             "link": "[:;data->rrss_0yt2sa->manifest->route:]",
                             "icon": "x-icon-rss"
                         }
+                    },
+                    "main": {
+                        "rrss": {
+                            "text": "Read RSS",
+                            "link": "[:;data->rrss_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-rss"
+                        }
                     }
                 },
                 "session:true": {
                     "rrss": {
                         "root": {
+                            "text": "Read RSS",
+                            "link": "[:;data->rrss_0yt2sa->manifest->route:]",
+                            "icon": "x-icon-rss"
+                        }
+                    },
+                    "main": {
+                        "rrss": {
                             "text": "Read RSS",
                             "link": "[:;data->rrss_0yt2sa->manifest->route:]",
                             "icon": "x-icon-rss"
